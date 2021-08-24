@@ -1,0 +1,76 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2021-04-02 16:46:01 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2021-04-02 16:55:49 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/requirements/edit.php 170
+ERROR - 2021-04-02 16:55:49 --> Severity: Notice --> Undefined property: stdClass::$sort_order /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/requirements/edit.php 179
+ERROR - 2021-04-02 16:56:34 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/learnings/show.php 58
+ERROR - 2021-04-02 16:56:34 --> Severity: Notice --> Undefined property: stdClass::$assigned_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/learnings/show.php 144
+ERROR - 2021-04-02 16:56:34 --> Severity: Notice --> Undefined property: stdClass::$started_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/learnings/show.php 151
+ERROR - 2021-04-02 16:56:34 --> Severity: Notice --> Undefined property: stdClass::$estimated_ended_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/learnings/show.php 158
+ERROR - 2021-04-02 17:16:52 --> Severity: Notice --> Undefined property: stdClass::$project_name /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/view.php 52
+ERROR - 2021-04-02 17:16:52 --> Severity: Notice --> Undefined property: stdClass::$project_name /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/view.php 52
+ERROR - 2021-04-02 17:16:52 --> Severity: Notice --> Undefined property: stdClass::$project_name /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/view.php 52
+ERROR - 2021-04-02 17:16:52 --> Severity: Notice --> Undefined property: stdClass::$project_name /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/view.php 52
+ERROR - 2021-04-02 17:16:52 --> Severity: Notice --> Undefined property: stdClass::$project_name /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/view.php 52
+ERROR - 2021-04-02 17:16:52 --> Severity: Notice --> Undefined property: stdClass::$project_name /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/view.php 52
+ERROR - 2021-04-02 17:17:08 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/show.php 83
+ERROR - 2021-04-02 17:17:08 --> Severity: Notice --> Undefined property: stdClass::$assigned_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/show.php 181
+ERROR - 2021-04-02 17:17:08 --> Severity: Notice --> Undefined property: stdClass::$started_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/show.php 188
+ERROR - 2021-04-02 17:17:08 --> Severity: Notice --> Undefined property: stdClass::$estimated_ended_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/show.php 195
+ERROR - 2021-04-02 17:17:10 --> Severity: Notice --> Undefined property: stdClass::$project_name /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/view.php 52
+ERROR - 2021-04-02 17:17:10 --> Severity: Notice --> Undefined property: stdClass::$project_name /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/view.php 52
+ERROR - 2021-04-02 17:17:10 --> Severity: Notice --> Undefined property: stdClass::$project_name /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/view.php 52
+ERROR - 2021-04-02 17:17:10 --> Severity: Notice --> Undefined property: stdClass::$project_name /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/view.php 52
+ERROR - 2021-04-02 17:17:10 --> Severity: Notice --> Undefined property: stdClass::$project_name /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/view.php 52
+ERROR - 2021-04-02 17:17:10 --> Severity: Notice --> Undefined property: stdClass::$project_name /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/ideas/view.php 52
+ERROR - 2021-04-02 17:30:36 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/projects/edit.php 72
+ERROR - 2021-04-02 17:31:01 --> Severity: Notice --> Undefined variable: priority /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/new.php 89
+ERROR - 2021-04-02 17:31:01 --> Severity: Warning --> Invalid argument supplied for foreach() /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/new.php 89
+ERROR - 2021-04-02 17:35:52 --> Severity: Notice --> Undefined variable: assigned_to /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Milestones.php 96
+ERROR - 2021-04-02 17:35:52 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Milestones.php 96
+ERROR - 2021-04-02 17:36:07 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 58
+ERROR - 2021-04-02 17:36:07 --> Severity: Notice --> Undefined variable: attachments /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 108
+ERROR - 2021-04-02 17:36:07 --> Severity: Notice --> Undefined property: stdClass::$assigned_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 149
+ERROR - 2021-04-02 17:36:07 --> Severity: Notice --> Undefined property: stdClass::$started_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 156
+ERROR - 2021-04-02 17:36:07 --> Severity: Notice --> Undefined property: stdClass::$estimated_ended_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 163
+ERROR - 2021-04-02 17:36:46 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/projects/edit.php 72
+ERROR - 2021-04-02 17:37:06 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 58
+ERROR - 2021-04-02 17:37:06 --> Severity: Notice --> Undefined variable: attachments /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 108
+ERROR - 2021-04-02 17:37:06 --> Severity: Notice --> Undefined property: stdClass::$assigned_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 149
+ERROR - 2021-04-02 17:37:06 --> Severity: Notice --> Undefined property: stdClass::$started_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 156
+ERROR - 2021-04-02 17:37:06 --> Severity: Notice --> Undefined property: stdClass::$estimated_ended_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 163
+ERROR - 2021-04-02 17:37:27 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/projects/edit.php 72
+ERROR - 2021-04-02 17:37:39 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 58
+ERROR - 2021-04-02 17:37:39 --> Severity: Notice --> Undefined variable: attachments /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 108
+ERROR - 2021-04-02 17:37:39 --> Severity: Notice --> Undefined property: stdClass::$assigned_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 149
+ERROR - 2021-04-02 17:37:39 --> Severity: Notice --> Undefined property: stdClass::$started_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 156
+ERROR - 2021-04-02 17:37:39 --> Severity: Notice --> Undefined property: stdClass::$estimated_ended_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 163
+ERROR - 2021-04-02 17:38:42 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 58
+ERROR - 2021-04-02 17:38:42 --> Severity: Notice --> Undefined variable: attachments /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 108
+ERROR - 2021-04-02 17:38:42 --> Severity: Notice --> Undefined property: stdClass::$assigned_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 149
+ERROR - 2021-04-02 17:38:42 --> Severity: Notice --> Undefined property: stdClass::$started_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 156
+ERROR - 2021-04-02 17:38:42 --> Severity: Notice --> Undefined property: stdClass::$estimated_ended_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 163
+ERROR - 2021-04-02 17:38:57 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 58
+ERROR - 2021-04-02 17:38:57 --> Severity: Notice --> Undefined variable: attachments /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 108
+ERROR - 2021-04-02 17:38:57 --> Severity: Notice --> Undefined property: stdClass::$assigned_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 149
+ERROR - 2021-04-02 17:38:57 --> Severity: Notice --> Undefined property: stdClass::$started_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 156
+ERROR - 2021-04-02 17:38:57 --> Severity: Notice --> Undefined property: stdClass::$estimated_ended_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 163
+ERROR - 2021-04-02 17:39:08 --> Severity: Notice --> Undefined variable: priority /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/new.php 89
+ERROR - 2021-04-02 17:39:08 --> Severity: Warning --> Invalid argument supplied for foreach() /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/new.php 89
+ERROR - 2021-04-02 17:39:46 --> Severity: Notice --> Undefined variable: assigned_to /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Milestones.php 96
+ERROR - 2021-04-02 17:39:46 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Milestones.php 96
+ERROR - 2021-04-02 17:39:52 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 58
+ERROR - 2021-04-02 17:39:52 --> Severity: Notice --> Undefined variable: attachments /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 108
+ERROR - 2021-04-02 17:39:52 --> Severity: Notice --> Undefined property: stdClass::$assigned_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 149
+ERROR - 2021-04-02 17:39:52 --> Severity: Notice --> Undefined property: stdClass::$started_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 156
+ERROR - 2021-04-02 17:39:52 --> Severity: Notice --> Undefined property: stdClass::$estimated_ended_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 163
+ERROR - 2021-04-02 17:42:34 --> Severity: Notice --> Undefined index: attachments /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Milestones.php 153
+ERROR - 2021-04-02 17:42:41 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 58
+ERROR - 2021-04-02 17:42:41 --> Severity: Notice --> Undefined variable: attachments /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 108
+ERROR - 2021-04-02 17:42:41 --> Severity: Notice --> Undefined property: stdClass::$assigned_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 149
+ERROR - 2021-04-02 17:42:41 --> Severity: Notice --> Undefined property: stdClass::$started_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 156
+ERROR - 2021-04-02 17:42:41 --> Severity: Notice --> Undefined property: stdClass::$estimated_ended_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 163
+ERROR - 2021-04-02 17:43:08 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/projects/edit.php 72
+ERROR - 2021-04-02 21:00:40 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2021-04-02 21:06:25 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/requirements/edit.php 170
+ERROR - 2021-04-02 21:06:25 --> Severity: Notice --> Undefined property: stdClass::$sort_order /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/requirements/edit.php 179

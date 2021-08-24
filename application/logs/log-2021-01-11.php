@@ -1,0 +1,36 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2021-01-11 10:03:59 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2021-01-11 04:48:42 --> Severity: error --> Exception: syntax error, unexpected '->' (T_OBJECT_OPERATOR), expecting ',' or ')' /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Assignedtasks.php 309
+ERROR - 2021-01-11 10:26:42 --> Severity: Warning --> Invalid argument supplied for foreach() /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/assignedtasks/view.php 53
+ERROR - 2021-01-11 10:31:16 --> Severity: Warning --> Invalid argument supplied for foreach() /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/assignedtasks/view.php 53
+ERROR - 2021-01-11 10:34:56 --> Severity: error --> Exception: Too few arguments to function Tasks_model::allAssignedTasks(), 0 passed in /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Assignedtasks.php on line 54 and at least 1 expected /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/models/Tasks_model.php 51
+ERROR - 2021-01-11 10:36:06 --> Severity: error --> Exception: Too few arguments to function Tasks_model::allAssignedTasks(), 0 passed in /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Assignedtasks.php on line 54 and at least 1 expected /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/models/Tasks_model.php 51
+ERROR - 2021-01-11 10:37:16 --> Severity: error --> Exception: Too few arguments to function Tasks_model::allAssignedTasks(), 0 passed in /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Assignedtasks.php on line 54 and at least 1 expected /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/models/Tasks_model.php 51
+ERROR - 2021-01-11 10:37:27 --> Severity: error --> Exception: Too few arguments to function Tasks_model::allAssignedTasks(), 0 passed in /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Assignedtasks.php on line 54 and at least 1 expected /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/models/Tasks_model.php 51
+ERROR - 2021-01-11 11:17:04 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2021-01-11 11:23:56 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2021-01-11 15:37:20 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2021-01-11 15:38:16 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2021-01-11 15:40:19 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2021-01-11 15:40:24 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2021-01-11 15:41:23 --> Severity: Warning --> Invalid argument supplied for foreach() /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Projects.php 93
+ERROR - 2021-01-11 15:43:06 --> Severity: Warning --> Invalid argument supplied for foreach() /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Requirements.php 97
+ERROR - 2021-01-11 15:43:06 --> Severity: Notice --> Undefined variable: assigned_to /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Requirements.php 106
+ERROR - 2021-01-11 15:43:06 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Requirements.php 106
+ERROR - 2021-01-11 15:44:12 --> Severity: Warning --> Invalid argument supplied for foreach() /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Requirements.php 97
+ERROR - 2021-01-11 15:44:12 --> Severity: Notice --> Undefined variable: assigned_to /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Requirements.php 106
+ERROR - 2021-01-11 15:44:12 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Requirements.php 106
+ERROR - 2021-01-11 15:44:57 --> Severity: Warning --> Invalid argument supplied for foreach() /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Requirements.php 97
+ERROR - 2021-01-11 15:44:57 --> Severity: Notice --> Undefined variable: assigned_to /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Requirements.php 106
+ERROR - 2021-01-11 15:44:57 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Requirements.php 106
+ERROR - 2021-01-11 15:46:17 --> Severity: Notice --> Undefined variable: priority /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/new.php 89
+ERROR - 2021-01-11 15:46:17 --> Severity: Warning --> Invalid argument supplied for foreach() /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/new.php 89
+ERROR - 2021-01-11 15:47:08 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 58
+ERROR - 2021-01-11 15:47:08 --> Severity: Notice --> Undefined variable: attachments /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 108
+ERROR - 2021-01-11 15:47:08 --> Severity: Notice --> Undefined property: stdClass::$assigned_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 149
+ERROR - 2021-01-11 15:47:08 --> Severity: Notice --> Undefined property: stdClass::$started_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 156
+ERROR - 2021-01-11 15:47:08 --> Severity: Notice --> Undefined property: stdClass::$estimated_ended_on /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/milestones/edit.php 163
+ERROR - 2021-01-11 15:47:23 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/projects/edit.php 72
+ERROR - 2021-01-11 15:47:48 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2021-01-11 19:12:13 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47

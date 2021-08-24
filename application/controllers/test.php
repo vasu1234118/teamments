@@ -1,0 +1,1 @@
+SELECT `t`.*, `s`.`title` as `status`, `u`.`display_name` FROM `tm_audit_tasks` `t` LEFT JOIN `tm_status` `s` ON `t`.`status` = `s`.`id` LEFT JOIN `tm_users` `u` ON `t`.`action_performed_by` = `u`.`id` LEFT JOIN `tm_tasks` `tk` ON `t`.`action_performed_on` = `tk`.`id` WHERE `t`.`createtask_id` IN (193) ORDER BY `t`.`id` DESC

@@ -1,0 +1,69 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2020-12-02 10:50:26 --> Severity: Notice --> Undefined property: stdClass::$picture C:\xampp1\htdocs\task1\application\controllers\Welcome.php 47
+ERROR - 2020-12-02 10:50:32 --> Severity: Notice --> Undefined property: stdClass::$requrements C:\xampp1\htdocs\task1\application\views\projects\edit.php 72
+ERROR - 2020-12-02 10:54:34 --> Severity: Warning --> mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() C:\xampp1\htdocs\task1\system\libraries\Email.php 1902
+ERROR - 2020-12-02 10:54:53 --> Severity: Notice --> Undefined property: stdClass::$picture C:\xampp1\htdocs\task1\application\controllers\Welcome.php 47
+ERROR - 2020-12-02 10:55:06 --> Severity: Notice --> Undefined property: stdClass::$actual_end_date C:\xampp1\htdocs\task1\application\views\taskinbox\edit.php 266
+ERROR - 2020-12-02 10:55:06 --> Severity: Notice --> Undefined property: stdClass::$task_progress C:\xampp1\htdocs\task1\application\views\taskinbox\edit.php 278
+ERROR - 2020-12-02 10:55:06 --> Severity: Notice --> Undefined property: stdClass::$task_progress C:\xampp1\htdocs\task1\application\views\taskinbox\edit.php 278
+ERROR - 2020-12-02 10:55:06 --> Severity: Notice --> Undefined property: stdClass::$task_progress C:\xampp1\htdocs\task1\application\views\taskinbox\edit.php 278
+ERROR - 2020-12-02 10:55:06 --> Severity: Notice --> Undefined property: stdClass::$task_progress C:\xampp1\htdocs\task1\application\views\taskinbox\edit.php 278
+ERROR - 2020-12-02 10:55:06 --> Severity: Notice --> Undefined property: stdClass::$task_progress C:\xampp1\htdocs\task1\application\views\taskinbox\edit.php 278
+ERROR - 2020-12-02 10:55:06 --> Severity: Notice --> Undefined property: stdClass::$task_progress C:\xampp1\htdocs\task1\application\views\taskinbox\edit.php 278
+ERROR - 2020-12-02 10:55:06 --> Severity: Notice --> Undefined property: stdClass::$task_progress C:\xampp1\htdocs\task1\application\views\taskinbox\edit.php 278
+ERROR - 2020-12-02 10:55:06 --> Severity: Notice --> Undefined property: stdClass::$task_progress C:\xampp1\htdocs\task1\application\views\taskinbox\edit.php 278
+ERROR - 2020-12-02 10:55:06 --> Severity: Notice --> Undefined property: stdClass::$task_progress C:\xampp1\htdocs\task1\application\views\taskinbox\edit.php 278
+ERROR - 2020-12-02 10:55:06 --> Severity: Notice --> Undefined property: stdClass::$task_progress C:\xampp1\htdocs\task1\application\views\taskinbox\edit.php 278
+ERROR - 2020-12-02 10:55:06 --> Severity: Notice --> Undefined property: stdClass::$task_progress C:\xampp1\htdocs\task1\application\views\taskinbox\edit.php 278
+ERROR - 2020-12-02 10:55:06 --> Severity: Notice --> Undefined property: stdClass::$actual_end_date C:\xampp1\htdocs\task1\application\views\taskinbox\edit.php 347
+ERROR - 2020-12-02 10:55:06 --> Severity: Notice --> Undefined property: stdClass::$actual_end_date C:\xampp1\htdocs\task1\application\views\taskinbox\edit.php 347
+ERROR - 2020-12-02 10:55:06 --> Severity: Notice --> Undefined property: stdClass::$actual_end_date C:\xampp1\htdocs\task1\application\views\taskinbox\edit.php 350
+ERROR - 2020-12-02 10:55:49 --> Severity: Warning --> mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() C:\xampp1\htdocs\task1\system\libraries\Email.php 1902
+ERROR - 2020-12-02 21:28:53 --> Severity: Warning --> mysqli::real_connect(): (28000/1045): Access denied for user 'db_test_r'@'localhost' (using password: YES) /home/nrh68y2g7970/public_html/addsum.co/codeigniter/system/database/drivers/mysqli/mysqli_driver.php 203
+ERROR - 2020-12-02 21:28:53 --> Unable to connect to the database
+ERROR - 2020-12-02 21:32:00 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2020-12-02 21:33:22 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2020-12-02 21:46:26 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2020-12-02 21:46:35 --> Severity: Notice --> Undefined property: stdClass::$actual_end_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 266
+ERROR - 2020-12-02 21:46:35 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:46:35 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:46:35 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:46:35 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:46:35 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:46:35 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:46:35 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:46:35 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:46:35 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:46:35 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:46:35 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:46:35 --> Severity: Notice --> Undefined property: stdClass::$actual_end_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 347
+ERROR - 2020-12-02 21:46:35 --> Severity: Notice --> Undefined property: stdClass::$actual_end_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 347
+ERROR - 2020-12-02 21:46:35 --> Severity: Notice --> Undefined property: stdClass::$actual_end_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 350
+ERROR - 2020-12-02 21:48:00 --> Severity: Notice --> Undefined property: stdClass::$actual_end_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 266
+ERROR - 2020-12-02 21:48:00 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:48:00 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:48:00 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:48:00 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:48:00 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:48:00 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:48:00 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:48:00 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:48:00 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:48:00 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:48:00 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 278
+ERROR - 2020-12-02 21:48:00 --> Severity: Notice --> Undefined property: stdClass::$actual_end_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 347
+ERROR - 2020-12-02 21:48:00 --> Severity: Notice --> Undefined property: stdClass::$actual_end_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 347
+ERROR - 2020-12-02 21:48:00 --> Severity: Notice --> Undefined property: stdClass::$actual_end_date /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/taskinbox/edit.php 350
+ERROR - 2020-12-02 22:31:50 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2020-12-02 22:33:45 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/projects/edit.php 72
+ERROR - 2020-12-02 22:35:11 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2020-12-02 22:36:06 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2020-12-02 22:39:22 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2020-12-02 22:42:17 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2020-12-02 22:43:21 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/projects/edit.php 72
+ERROR - 2020-12-02 22:43:41 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/projects/edit.php 72
+ERROR - 2020-12-02 22:44:04 --> Severity: Notice --> Undefined property: stdClass::$requrements /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/views/projects/edit.php 72
+ERROR - 2020-12-02 22:45:52 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2020-12-02 22:51:37 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
+ERROR - 2020-12-02 22:53:55 --> Severity: Notice --> Undefined property: stdClass::$picture /home/nrh68y2g7970/public_html/addsum.co/codeigniter/application/controllers/Welcome.php 47
