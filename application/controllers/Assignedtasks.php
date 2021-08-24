@@ -14,7 +14,7 @@ class Assignedtasks extends CI_Controller
 	public $status_table = 'status';
 	public $tasks_table = 'tasks';
 	public $attachments_table = 'createtasks_attachments';
-	public $limit = 30;
+	public $limit = 40;
 	public $add_title = 'Task';
 	public $title = 'Assigned Tasks';
 
