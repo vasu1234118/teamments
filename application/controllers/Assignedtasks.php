@@ -11,7 +11,7 @@ class Assignedtasks extends CI_Controller
 	public $priority_table = 'priority';
 	public $audit_task = 'audit_tasks';
 	public $project_table = 'projects';
-	public $status_table = 'status';
+	public $status_table = 'statu';
 	public $tasks_table = 'tasks';
 	public $attachments_table = 'createtasks_attachments';
 	public $limit = 40;
