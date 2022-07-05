@@ -1,7 +1,7 @@
-      <!-- /.content-wrapper -->
+  <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 1.1.0
+      <b>Version</b> 2.2.0
     </div>
     <strong>Copyright &copy; 2020 <a href="https://www.digitohub.com" target="_blank">DigitoWork</a>.</strong> All rights reserved.
   </footer>
@@ -609,7 +609,8 @@ function getReqonProjectChange(project_id) {
 </script>
 
 
-<?php if( ($METHOD_NAME=='index'||$METHOD_NAME=='alltasks'||$METHOD_NAME=='mysavedtasks') ){ ?>
+<?php if( ($METHOD_NAME=='index'||$METHOD_NAME=='alltasks'||$METHOD_NAME=='mysavedtasks' || $METHOD_NAME=='employewise' || $METHOD_NAME=='empproject' || $METHOD_NAME=='datewise' ||  $METHOD_NAME=='emppro'|| $METHOD_NAME=='completed' || $METHOD_NAME=='newtask' || $METHOD_NAME=='incomplete' || $METHOD_NAME=='awaiting' || $METHOD_NAME=='login_details' || $METHOD_NAME=='inactive_users') ){ ?>
+
 <!-- Script For Data Tables Start -->
 <script language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script language="javascript" src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
@@ -623,8 +624,8 @@ function getReqonProjectChange(project_id) {
 <script language="javascript">
 $ref =jQuery.noConflict();
 $ref(document).ready(function() {
-    //alert("Hello");
-	$ref('#referral_table').DataTable({
+  //  alert("Hello");
+	$ref('#referral_table1').DataTable({
     dom: 'lBfrtip',
         buttons: [
             //'copyHtml5',
@@ -688,7 +689,7 @@ $ref(document).ready(function() {
 <!-- Script For Data Tables End -->
 <?php } ?>
 
-<?php if( ($METHOD_NAME=='add_new') || ($METHOD_NAME=='passwordchange' ) || $CLASS_NAME=='ideas'){  ?>
+<?php if( ($METHOD_NAME=='add_new') || ($METHOD_NAME=='datewise') || ($METHOD_NAME=='passwordchange' ) || $CLASS_NAME=='ideas'){  ?>
 <!-- Validation Start -->
 <script src="<?php echo site_url('public/js/jquery_v1.9.js'); ?>" type="text/javascript" charset="utf-8"></script>
 <link rel="stylesheet" href="<?php echo site_url('public/css/validationEngine.jquery.css'); ?>" type="text/css"/>
@@ -786,7 +787,9 @@ function ideaStatusSelect(id) {
 <?php } ?>
 
 
-
+<script type="text/javascript">
+  
+</script>
 
 </body>
 </html>

@@ -10,6 +10,7 @@ class Taskinbox extends CI_Controller {
 	public $priority_table='priority';
 	public $status_table='status';
 	public $task_table='tasks';
+		public $tasks_users = 'users';
 	public $attachments_table='createtasks_attachments';
 	public $attachments_my_table='task_attachments';
 	public $progress_table='task_progress';
@@ -45,6 +46,34 @@ class Taskinbox extends CI_Controller {
 		$this->load->view($this->pagename.'/view',$this->data);
 	}
 	
+	
+		public function completed()
+	{
+		$this->data['records'] =$this->task->completed($this->data['ADMIN_ID']);
+	//echo "<pre/>";print_r($this->data['records']);die;
+		$this->load->view($this->pagename.'/complted',$this->data);
+	}
+
+	public function newtask()
+	{
+		$this->data['records'] =$this->task->newtask($this->data['ADMIN_ID']);
+	//echo "<pre/>";print_r($this->data['records']);die;
+		$this->load->view($this->pagename.'/newtask',$this->data);
+	}
+	
+		public function incomplete()
+	{
+		$this->data['records'] =$this->task->incomplete($this->data['ADMIN_ID']);
+	//echo "<pre/>";print_r($this->data['records']);die;
+		$this->load->view($this->pagename.'/incomplete',$this->data);
+	}
+		public function awaiting()
+	{
+		$this->data['records'] =$this->task->awaiting($this->data['ADMIN_ID']);
+	//echo "<pre/>";print_r($this->data['records']);die;
+		$this->load->view($this->pagename.'/awaiting',$this->data);
+	}
+	
 	public function edit($ctask_md5_id='',$ctask_attach_md5_id=''){
 	    
 		if($ctask_attach_md5_id){
@@ -60,7 +89,8 @@ class Taskinbox extends CI_Controller {
 		}
 		$this->data['record_info'] =$this->task->getTaskDetailsForTaskInbox($ctask_md5_id);
 		$record_info_id=$this->data['record_info']->id;
-
+		
+	$this->viewdisplay($record_info_id);
 		if($this->input->post()){
 			/** Select User created by id for mail */
 		
@@ -78,8 +108,70 @@ class Taskinbox extends CI_Controller {
 			$mytaskdetails =$this->task->getTaskDetailsForTaskInbox($edit_id);
 			//dd($mytaskdetails);
 			// $createdby_id=$this->common->getSelectedRecordDetails('*', $this->table, array('id'=>$mytaskdetails->createtask_id));
+				$audit=[];
+				$chk_changes=['status','sub_status','task_progress'];
+			$audit['createdby']=$this->data['ADMIN_ID'];
+				$oldata=$this->db->get_where($this->task_table, array('md5(createtask_id)'=>$edit_id))->row();
+				$audit['task_id']=$oldata->createtask_id;
+			$audit['status']='1';
 			$this->common->updateTable($this->task_table,array('md5(createtask_id)'=>$edit_id,'user_id'=>$this->data['ADMIN_ID']),$record_data);
-			// Attachment Upload
+			
+		$z=$this->db->get_where($this->task_table,array('md5(createtask_id)'=>$edit_id,))->row();
+			$s=$this->db->get_where($this->table,array('id'=>$z->createtask_id))->row();
+			$u=$this->db->get_where($this->tasks_users,array('id'=>$s->created_by))->row();
+			
+		
+		$proadmin_data =$this->session->userdata('proadmin_data');
+	
+		
+		
+		
+			   	$msg = array(
+	         'task_name'=>$s->name,
+             'status'=>$record_data['status'],
+	          'date'=>date('y-m-d H:i:s'),
+		
+'task_id'=>$z->createtask_id,
+ name=>$this->data['ADMIN_DISPLAY_NAME'],
+
+			
+		
+        );
+        
+        $message = $this->load->view('completedemail',$msg,TRUE);
+                                    	
+                                //$subject.="Task Id";
+                                $config = array(  'mailtype'  => 'html', 'charset'   => 'iso-8859-1' );
+                                $this->load->library('email'); 
+                                $this->email->initialize( $config);
+                                $this->email->from('info@dqci.in', $admin);
+                                $this->email->to($u->email);
+                                $this->email->cc($email_cc);
+                               //$this->email->cc('vasu.svrao@gmail.com');
+                                //$this->email->subject($subject. taskId($Events));
+                               $this->email->subject($subject.":" ."TASK0".$z->createtask_id); 
+                                $this->email->message($message);
+
+                       $this->email->send();
+                                
+        
+        
+			
+		
+			
+			foreach($chk_changes as $v){
+			   if($oldata->$v!=$record_data[$v]) 
+			   {
+				$audit['type']=$v;
+				$audit['old_data']=$oldata->$v;
+				$audit['new_data']=$record_data[$v];
+				
+				$this->db->insert('taskaudit', $audit);
+			   }
+			}
+				
+		 
+			
 			if(isset($_FILES['attachments'])) {
 		        $path='./public/attachments_mytask/';
 				$title='';
@@ -95,10 +187,12 @@ class Taskinbox extends CI_Controller {
 					}
 				}
 			}
-			$this->session->set_flashdata('message',$this->add_title.' Updated <strong>Successfully</strong>.');
+				$this->getdisplay($this->data['record_info']->id);
+			$this->session->set_flashdata('message',"TASK00".$z->createtask_id. " " .$this->add_title.' Updated <strong>Successfully</strong>.');
 			//dd($mytaskdetails->created_by);
 		//	$this->notificationmail->sendUpdateMailWithOutEvent($mytaskdetails->created_by,$mytaskdetails->id,$type='to_creator');
 			redirect(site_url($this->pagename));
+			
 		}
 
 		$this->data['attachments']=$this->common->getAllRecords('id,file_name', $this->attachments_table, array('md5(createtask_id)'=>$ctask_md5_id), array('id','DESC'), array($this->limit,0));
@@ -111,14 +205,64 @@ class Taskinbox extends CI_Controller {
 	
 		$this->data['task_info']=$this->common->getSelectedRecordDetails('*', $this->task_table, array('createtask_id'=>$this->data['record_info']->id,'user_id'=>$this->data['ADMIN_ID']));
 		//dd($this->data['task_info']);
+	
+$this->data['task_info']->adisplay;
 		if($this->data['task_info']->display=='N'){
 			// Update N to Y
 			$record_data=array('display'=>'Y');
+		
 			$this->common->updateTable($this->task_table,array('id'=>$this->data['task_info']->id),$record_data);
+		
 		}
+	
+		
+	
 
 		$this->data['unread_tasks']=$this->task->getUnreadTaskCount($this->data['ADMIN_ID']);
 		$this->load->view($this->pagename.'/edit',$this->data);
+	}
+	function getdisplay($id){
+	 /*   $status=array('display'=>'Y','cdisplay'=>'Y','adisplay'=>'Y','indisplay'=>'Y', 'wdisplay'=>'Y');
+	    $re=$this->db->get_where($this->task_table, array('createtask_id'=>$id,'user_id'=>$this->data['ADMIN_ID']))->row();
+	    if($re->status==5){
+	        $status['display']='N';
+	    }
+	     if($re->status==1){
+	        $status['cdisplay']='N';
+	    } 
+	    if($re->status==4){
+	        $status['adisplay']='N';
+	    }
+	    if($re->status==2){
+	        $status['indisplay']='N';
+	    }
+	     if($re->status==3){
+	        $status['wdisplay']='N';
+	    }
+	    */
+	$this->common->updateTable($this->task_table,array('createtask_id'=>$id,'user_id'=>$this->data['ADMIN_ID']),array('display'=>'N'));    
+	}
+	
+		function viewdisplay($id){
+	/*    $status=array();
+	    $re=$this->db->get_where($this->task_table, array('createtask_id'=>$id,'user_id'=>$this->data['ADMIN_ID']))->row();
+	    if($re->status=='5'){
+	        $status['display']='Y';
+	    }
+	     if($re->status=='1'){
+	        $status['cdisplay']='Y';
+	    } 
+	    if($re->status=='4'){
+	        $status['adisplay']='Y';
+	    }
+	    if($re->status=='2'){
+	        $status['indisplay']='Y';
+	    }
+	    if($re->status=='3'){
+	        $status['wdisplay']='Y';
+	    }
+	    */
+	$this->common->updateTable($this->task_table,array('createtask_id'=>$id,'user_id'=>$this->data['ADMIN_ID']),array('display'=>'Y'));    
 	}
 	
 	function delete(){
@@ -128,7 +272,7 @@ class Taskinbox extends CI_Controller {
 		$this->session->set_flashdata('message',$this->add_title.' Deleted <strong>Successfully</strong>.');
 		redirect(site_url($this->pagename));
 	}
-
+	
 	public function getrequirement(){
 		$id=$this->uri->segment(3);
 	$res	=$this->db->get_where('tm_sub_status',  array('status_id'=>$id) );
@@ -141,4 +285,5 @@ class Taskinbox extends CI_Controller {
 	}
 	
 }
+
 }

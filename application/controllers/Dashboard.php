@@ -43,7 +43,7 @@ class Dashboard extends CI_Controller {
 		$this->data['closed_tasks_count']=$this->task->closedTasksCount($this->data['ADMIN_ID']);
 
 		// Task Inbox
-		$this->data['newtasks_count']=$this->common->get_table_count($this->tasks,array('display'=>'N','user_id'=>$this->data['ADMIN_ID']));
+		$this->data['newtasks_count']=$this->common->get_table_count($this->tasks,array('user_id'=>$this->data['ADMIN_ID'],'status'=>5));
 		$this->data['totaltasks_count']=$this->common->get_table_count($this->tasks,array('user_id'=>$this->data['ADMIN_ID']));
 		$this->data['closedtasks_count']=$this->common->get_table_count($this->tasks,array('user_id'=>$this->data['ADMIN_ID'],'status'=>1));
 

@@ -1,4 +1,3 @@
-
 <?php
 class Tasks_model extends CI_Model{
 	public $createtask_tbl='createtasks';
@@ -23,7 +22,7 @@ class Tasks_model extends CI_Model{
     {
         $config = array(
             'upload_path'   => $path,
-            'allowed_types' => 'doc|pdf|xls|xlsx|jpg|gif|png|jpeg|csv|docx|txt',
+            'allowed_types' => 'doc|pdf|xls|xlsx|jpg|gif|png|jpeg|csv|docx|txt|ppt|pptx|zip',
             'overwrite'     => 1,
             'file_name'		=> $fileName                     
         );
@@ -52,20 +51,22 @@ class Tasks_model extends CI_Model{
     }
 
 	function allAssignedTasks($user_id,$req_id=''){
-		$role='1';
-		$this->db->select("ct.*,c.title as complexity_name, p.title as priority_name,u.fname as assigned_to_fname,(SELECT   GROUP_CONCAT(b.display_name ORDER BY b.id) DepartmentName FROM    tm_createtasks a INNER JOIN tm_users b ON FIND_IN_SET(b.id, a.assigned_to) > 0 WHERE a.id=ct.id) as assigned1_to,proj.name as project_name,mile.name as milestone_name,proj.assigned_to as prj, 
+	    $role=1;
+	    $se=$this->db->get_where('tm_users', array('id'=>$user_id))->row();
+		$this->db->select("ct.*,c.title as complexity_name, p.title as priority_name,u.fname as assigned_to_fname,(SELECT   GROUP_CONCAT(b.display_name ORDER BY b.id) DepartmentName FROM    tm_createtasks a INNER JOIN tm_users b ON FIND_IN_SET(b.id, a.assigned_to) > 0 WHERE a.id=ct.id) as assigned_to1,proj.name as project_name,mile.name as milestone_name,proj.assigned_to as prj, 
 		(SELECT GROUP_CONCAT(concat(tm_users.display_name,' (',tm_status.title,')') SEPARATOR ',')   FROM `tm_tasks`  
 		JOIN tm_users on tm_users.id=tm_tasks.user_id
 		JOIN tm_status on tm_status.id=tm_tasks.status
 		WHERE createtask_id= ct.id) as users_status,requ.uniq_id as requ_id");
 		$this->db->from($this->createtask_tbl.' ct');
 	//$this->db->where(" ct.flag!=2 ");
-if($role!='1'){
-	$this->db->where("'$user_id'=ct.created_by AND ct.flag!=2 ");
-}else{
-$this->db->where(" ct.flag!=2 ");
-}
-	$this->db->where("'$user_id'=ct.created_by AND ct.flag!=2 ");
+	if($se->role=='3'){
+		//$this->db->where("FIND_IN_SET($user_id, proj.assigned_to)");
+	}
+	if(!(($se->role=='1')||($se->role=='3'))){
+
+$this->db->where("'$user_id'=ct.created_by AND ct.flag!=2 ");
+	}
 		if($req_id!='')
 			$this->db->where("md5(ct.requirement_id)",$req_id);
 			
@@ -84,15 +85,183 @@ $this->db->where(" ct.flag!=2 ");
 	}
 
 
+function employewise($user_id,$req_id='', $emp_id , $pr_id){
+	 
+	    $role=1;
+	    $se=$this->db->get_where('tm_users', array('id'=>$user_id))->row();
+		$this->db->select("ct.*,c.title as complexity_name, p.title as priority_name,u.fname as assigned_to_fname,(SELECT   GROUP_CONCAT(b.display_name ORDER BY b.id) DepartmentName FROM    tm_createtasks a INNER JOIN tm_users b ON FIND_IN_SET(b.id, a.assigned_to) > 0 WHERE a.id=ct.id) as assigned_to1,proj.name as project_name,mile.name as milestone_name,proj.assigned_to as prj, 
+		(SELECT GROUP_CONCAT(concat(tm_users.display_name,' (',tm_status.title,')') SEPARATOR ',')   FROM `tm_tasks`  
+		JOIN tm_users on tm_users.id=tm_tasks.user_id
+		JOIN tm_status on tm_status.id=tm_tasks.status
+		WHERE createtask_id= ct.id) as users_status,requ.uniq_id as requ_id");
+		$this->db->from($this->createtask_tbl.' ct');
+	//$this->db->where(" ct.flag!=2 ");
+	
+	if($se->role!='1'&& $se->role!='3'){
+$this->db->where("'$user_id'=ct.created_by AND ct.flag!=2 ");
+	}
+	
+		$w='';
+		foreach($emp_id as $k=>$v){ 
+        if($k){
+        	$w.=" OR FIND_IN_SET($v, ct.assigned_to)";
+		 }else {
+		 	$w.=" FIND_IN_SET($v, ct.assigned_to)";
+		 }
+        }
+		$this->db->where($w);
+		$this->db->where('ct.project_id', $pr_id);
+	
+		if($req_id!='')
+			$this->db->where("md5(ct.requirement_id)",$req_id);
+			
+		$this->db->join($this->complexity_tbl.' c', 'ct.complexity = c.id');
+		$this->db->join($this->users.' u', 'ct.assigned_to = u.id','left');
+		$this->db->join($this->project_tbl.' proj', 'ct.project_id = proj.id','left');
+		$this->db->join($this->milestone_tbl.' mile', 'ct.milestone_id = mile.id','left');
+		$this->db->join($this->priority_tbl.' p', 'ct.priority = p.id');
+		$this->db->join($this->requirement_tbl.' requ', 'requ.id = ct.requirement_id','left');
+		$this->db->group_by("ct.id");
+		$this->db->order_by('ct.id','DESC');
+		
+		$query =$this->db->get();	
+	
+		return $query->result();
+	}
+
+
+	function empproject($user_id,$req_id='', $emp_id, $pr_id){
+	echo 
+	    $role=1;
+	    $se=$this->db->get_where('tm_users', array('id'=>$user_id))->row();
+		$this->db->select("ct.*,c.title as complexity_name, p.title as priority_name,u.fname as assigned_to_fname,(SELECT   GROUP_CONCAT(b.display_name ORDER BY b.id) DepartmentName FROM    tm_createtasks a INNER JOIN tm_users b ON FIND_IN_SET(b.id, a.assigned_to) > 0 WHERE a.id=ct.id) as assigned_to1,proj.name as project_name,mile.name as milestone_name,proj.assigned_to as prj, 
+		(SELECT GROUP_CONCAT(concat(tm_users.display_name,' (',tm_status.title,')') SEPARATOR ',')   FROM `tm_tasks`  
+		JOIN tm_users on tm_users.id=tm_tasks.user_id
+		JOIN tm_status on tm_status.id=tm_tasks.status
+		WHERE createtask_id= ct.id) as users_status,requ.uniq_id as requ_id");
+		$this->db->from($this->createtask_tbl.' ct');
+	//$this->db->where(" ct.flag!=2 ");
+	
+	if($se->role!='1'&& $se->role!='3'){
+$this->db->where("'$user_id'=ct.created_by AND ct.flag!=2 ");
+	}
+	if(($emp_id)&&($pr_id)){		
+		$this->db->where("FIND_IN_SET($emp_id, ct.assigned_to)");
+		$this->db->where('ct.project_id', $pr_id);
+	}
+		if($req_id!='')
+			$this->db->where("md5(ct.requirement_id)",$req_id);
+			
+		$this->db->join($this->complexity_tbl.' c', 'ct.complexity = c.id');
+		$this->db->join($this->users.' u', 'ct.assigned_to = u.id','left');
+		$this->db->join($this->project_tbl.' proj', 'ct.project_id = proj.id','left');
+		$this->db->join($this->milestone_tbl.' mile', 'ct.milestone_id = mile.id','left');
+		$this->db->join($this->priority_tbl.' p', 'ct.priority = p.id');
+		$this->db->join($this->requirement_tbl.' requ', 'requ.id = ct.requirement_id','left');
+		$this->db->group_by("ct.id");
+		$this->db->order_by('ct.id','DESC');
+		
+		$query =$this->db->get();	
+		echo $this->db->last_query();
+		return $query->result();
+	}
+
+	function projectwise($user_id,$req_id='', $pr_id){
+	echo 
+	    $role=1;
+	    $se=$this->db->get_where('tm_users', array('id'=>$user_id))->row();
+		$this->db->select("ct.*,c.title as complexity_name, p.title as priority_name,u.fname as assigned_to_fname,(SELECT   GROUP_CONCAT(b.display_name ORDER BY b.id) DepartmentName FROM    tm_createtasks a INNER JOIN tm_users b ON FIND_IN_SET(b.id, a.assigned_to) > 0 WHERE a.id=ct.id) as assigned_to1,proj.name as project_name,mile.name as milestone_name,proj.assigned_to as prj, 
+		(SELECT GROUP_CONCAT(concat(tm_users.display_name,' (',tm_status.title,')') SEPARATOR ',')   FROM `tm_tasks`  
+		JOIN tm_users on tm_users.id=tm_tasks.user_id
+		JOIN tm_status on tm_status.id=tm_tasks.status
+		WHERE createtask_id= ct.id) as users_status,requ.uniq_id as requ_id");
+		$this->db->from($this->createtask_tbl.' ct');
+	//$this->db->where(" ct.flag!=2 ");
+	
+	if(!(($se->role=='1')||($se->role=='3'))){
+$this->db->where("'$user_id'=ct.created_by AND ct.flag!=2 ");
+	}
+	if($pr_id){
+		$this->db->where('ct.project_id', $pr_id);
+	}
+		if($req_id!='')
+			$this->db->where("md5(ct.requirement_id)",$req_id);
+			
+		$this->db->join($this->complexity_tbl.' c', 'ct.complexity = c.id');
+		$this->db->join($this->users.' u', 'ct.assigned_to = u.id','left');
+		$this->db->join($this->project_tbl.' proj', 'ct.project_id = proj.id','left');
+		$this->db->join($this->milestone_tbl.' mile', 'ct.milestone_id = mile.id','left');
+		$this->db->join($this->priority_tbl.' p', 'ct.priority = p.id');
+		$this->db->join($this->requirement_tbl.' requ', 'requ.id = ct.requirement_id','left');
+		$this->db->group_by("ct.id");
+		$this->db->order_by('ct.id','DESC');
+		
+		$query =$this->db->get();	
+		//echo $this->db->last_query();
+		return $query->result();
+	}
+
+function datewise($user_id,$req_id='', $new_date, $last_date,$emp_id , $pr_id){
+	echo 
+	    $role=1;
+	    $se=$this->db->get_where('tm_users', array('id'=>$user_id))->row();
+		$this->db->select("ct.*,c.title as complexity_name, p.title as priority_name,u.fname as assigned_to_fname,(SELECT   GROUP_CONCAT(b.display_name ORDER BY b.id) DepartmentName FROM    tm_createtasks a INNER JOIN tm_users b ON FIND_IN_SET(b.id, a.assigned_to) > 0 WHERE a.id=ct.id) as assigned_to1,proj.name as project_name,mile.name as milestone_name,proj.assigned_to as prj, 
+		(SELECT GROUP_CONCAT(concat(tm_users.display_name,' (',tm_status.title,')') SEPARATOR ',')   FROM `tm_tasks`  
+		JOIN tm_users on tm_users.id=tm_tasks.user_id
+		JOIN tm_status on tm_status.id=tm_tasks.status
+		WHERE createtask_id= ct.id) as users_status,requ.uniq_id as requ_id");
+		$this->db->from($this->createtask_tbl.' ct');
+	//$this->db->where(" ct.flag!=2 ");
+
+	if($se->role!='1'&& $se->role!='3'){
+		$this->db->where("'$user_id'=ct.created_by AND ct.flag!=2 ");
+		}	
+		$w='';
+		foreach($emp_id as $k=>$v){ 
+        if($k){
+        	$w.=" OR FIND_IN_SET($v, ct.assigned_to)";
+		 }else {
+		 	$w.=" FIND_IN_SET($v, ct.assigned_to)";
+		 }
+        }
+		$this->db->where($w);
+		$this->db->where('ct.project_id', $pr_id);
+
+$this->db->where('created_on >=', $new_date);
+$this->db->where('created_on <=', $last_date);
+
+	
+	
+		if($req_id!='')
+			$this->db->where("md5(ct.requirement_id)",$req_id);
+			
+		$this->db->join($this->complexity_tbl.' c', 'ct.complexity = c.id');
+		$this->db->join($this->users.' u', 'ct.assigned_to = u.id','left');
+		$this->db->join($this->project_tbl.' proj', 'ct.project_id = proj.id','left');
+		$this->db->join($this->milestone_tbl.' mile', 'ct.milestone_id = mile.id','left');
+		$this->db->join($this->priority_tbl.' p', 'ct.priority = p.id');
+		$this->db->join($this->requirement_tbl.' requ', 'requ.id = ct.requirement_id','left');
+		$this->db->group_by("ct.id");
+		$this->db->order_by('ct.id','DESC');
+		
+		$query =$this->db->get();	
+		
+		return $query->result();
+	}
+
+
 
 	function mySaveTasks($user_id,$req_id=''){
+	    $se=$this->db->get_where('tm_users', array('id'=>$user_id))->row();
 		$this->db->select("ct.*,c.title as complexity_name, p.title as priority_name,u.fname as assigned_to_fname,(SELECT   GROUP_CONCAT(b.display_name ORDER BY b.id) DepartmentName FROM    tm_createtasks a INNER JOIN tm_users b ON FIND_IN_SET(b.id, a.assigned_to) > 0 WHERE a.id=ct.id) as assigned_to,proj.name as project_name,mile.name as milestone_name,proj.assigned_to as prj, 
 		(SELECT GROUP_CONCAT(concat(tm_users.display_name,' (',tm_status.title,')') SEPARATOR ',')   FROM `tm_tasks`  
 		JOIN tm_users on tm_users.id=tm_tasks.user_id
 		JOIN tm_status on tm_status.id=tm_tasks.status
 		WHERE createtask_id= ct.id) as users_status,requ.uniq_id as requ_id");
-		$this->db->from($this->createtask_tbl.' ct'); 
+		$this->db->from($this->createtask_tbl.' ct');
+		if($se->role!='1'){
 		$this->db->where("'$user_id'=ct.created_by AND ct.flag!=1 ");
+		}
 		if($req_id!='')
 			$this->db->where("md5(requ.id)",$req_id);
 		$this->db->where("ct.flag",2);
@@ -105,14 +274,13 @@ $this->db->where(" ct.flag!=2 ");
 		$this->db->group_by("ct.id");
 		$this->db->order_by('ct.id','DESC');
 		
-		$query =$this->db->get();	
-		echo $this->db->last_query();	
+		$query =$this->db->get();		
 		return $query->result();
 	}
 
 
 	function allAssignedUsers($level,$uid){
-		$this->db->select("u.id,u.display_name,r.title as role_name");
+		$this->db->select("u.id,u.display_name,u.etype,r.title as role_name");
 		$this->db->from($this->users_tbl.' u');
 		if($level>=5)
 			$this->db->where('u.id='.$uid);
@@ -177,22 +345,259 @@ $this->db->where(" ct.flag!=2 ");
 	}
 
 	function allTasks($user_id){
-		$this->db->select('ct.*,t.display,u.display_name, c.title as complexity_name, p.title as priority_name, s.title as status_title,t.createtask_id');/*,c.title as complexity_name, p.title as priority_name,s.title as status_name*/
+	    
+	    $se=$this->db->get_where('tm_users', array('id'=>$user_id))->row();
+	    if($se->role!='1'){
+		$this->db->select('ct.*,t.display,t.status,u.display_name, c.title as complexity_name, p.title as priority_name, s.title as status_title,t.createtask_id');/*,c.title as complexity_name, p.title as priority_name,s.title as status_name*/
 		$this->db->from($this->createtask_tbl.' ct');
 		$this->db->where("FIND_IN_SET($user_id,ct.assigned_to) AND ct.flag=0");
+		$this->db->where('t.status!=1');
+		$this->db->where('t.status!=2');
+		$this->db->where('t.status!=4');
 		$this->db->join($this->complexity_tbl.' c', 'ct.complexity = c.id');
 		$this->db->join($this->priority_tbl.' p', 'ct.priority = p.id');
 		$this->db->join($this->users_tbl.' u', 'ct.created_by = u.id');
+		
 		$this->db->join($this->task_tbl.' t', 'ct.id = t.createtask_id AND t.user_id='.$user_id);
+	
+		   
+		    
+	
 		$this->db->join($this->status_tbl.' s', 't.status = s.id');
 		$this->db->order_by('id','DESC');
 		
 		$query =$this->db->get();
-		//$this->db->last_query();
+	//echo $this->db->last_query();
 		return $query->result();
+	    }else {
+	        
+	       $this->db->select('ct.*,t.display,t.status as status,u.display_name, c.title as complexity_name, p.title as priority_name, s.title as status_title,t.createtask_id');/*,c.title as complexity_name, p.title as priority_name,s.title as status_name*/
+		$this->db->from($this->createtask_tbl.' ct');
+		$this->db->where('t.status!=1');
+		$this->db->where('t.status!=2');
+		$this->db->where('t.status!=4');
+		//$this->db->where(" ct.flag=0");
+		
+		$this->db->join($this->complexity_tbl.' c', 'ct.complexity = c.id');
+		$this->db->join($this->priority_tbl.' p', 'ct.priority = p.id');
+		$this->db->join($this->users_tbl.' u', 'ct.created_by = u.id');
+		
+		$this->db->join($this->task_tbl.' t', 'ct.id = t.createtask_id');
+	
+		   
+		    
+	
+		$this->db->join($this->status_tbl.' s', 't.status = s.id');
+		$this->db->order_by('id','DESC');
+		
+		$query =$this->db->get();
+
+		return $query->result(); 
+	        
+	        
+	    }
 	}
 
 
+function completed($user_id){
+	    
+	    $se=$this->db->get_where('tm_users', array('id'=>$user_id))->row();
+	    if($se->role!='1'){
+		$this->db->select('ct.*,t.display,t.cdisplay, t.status,u.display_name, c.title as complexity_name, p.title as priority_name, s.title as status_title,t.createtask_id');/*,c.title as complexity_name, p.title as priority_name,s.title as status_name*/
+		$this->db->from($this->createtask_tbl.' ct');
+		$this->db->where("FIND_IN_SET($user_id,ct.assigned_to) AND ct.flag=0");
+		$this->db->where('t.status=1');
+		$this->db->join($this->complexity_tbl.' c', 'ct.complexity = c.id');
+		$this->db->join($this->priority_tbl.' p', 'ct.priority = p.id');
+		$this->db->join($this->users_tbl.' u', 'ct.created_by = u.id');
+		
+		$this->db->join($this->task_tbl.' t', 'ct.id = t.createtask_id AND t.user_id='.$user_id);
+	
+		   
+		    
+	
+		$this->db->join($this->status_tbl.' s', 't.status = s.id');
+		$this->db->order_by('id','DESC');
+		
+		$query =$this->db->get();
+	//echo $this->db->last_query();
+		return $query->result();
+	    }else {
+	        
+	       $this->db->select('ct.*,t.display,t.cdisplay, t.status as status,u.display_name, c.title as complexity_name, p.title as priority_name, s.title as status_title,t.createtask_id');/*,c.title as complexity_name, p.title as priority_name,s.title as status_name*/
+		$this->db->from($this->createtask_tbl.' ct');
+		$this->db->where('t.status=1');
+		//$this->db->where(" ct.flag=0");
+		
+		$this->db->join($this->complexity_tbl.' c', 'ct.complexity = c.id');
+		$this->db->join($this->priority_tbl.' p', 'ct.priority = p.id');
+		$this->db->join($this->users_tbl.' u', 'ct.created_by = u.id');
+		
+		$this->db->join($this->task_tbl.' t', 'ct.id = t.createtask_id');
+	
+		   
+		    
+	
+		$this->db->join($this->status_tbl.' s', 't.status = s.id');
+		$this->db->order_by('id','DESC');
+		
+		$query =$this->db->get();
+
+		return $query->result(); 
+	        
+	        
+	    }
+	}
+
+function newtask($user_id){
+	    
+	    $se=$this->db->get_where('tm_users', array('id'=>$user_id))->row();
+	    if($se->role!='1'){
+		$this->db->select('ct.*,t.display,t.cdisplay, t.status,u.display_name, c.title as complexity_name, p.title as priority_name, s.title as status_title,t.createtask_id');/*,c.title as complexity_name, p.title as priority_name,s.title as status_name*/
+		$this->db->from($this->createtask_tbl.' ct');
+		$this->db->where("FIND_IN_SET($user_id,ct.assigned_to) AND ct.flag=0");
+		//$this->db->where('t.status=1');
+		$this->db->join($this->complexity_tbl.' c', 'ct.complexity = c.id');
+		$this->db->join($this->priority_tbl.' p', 'ct.priority = p.id');
+		$this->db->join($this->users_tbl.' u', 'ct.created_by = u.id');
+		
+		$this->db->join($this->task_tbl.' t', 'ct.id = t.createtask_id AND t.user_id='.$user_id);
+	
+		   
+		    
+	
+		$this->db->join($this->status_tbl.' s', 't.status = s.id');
+		$this->db->order_by('id','DESC');
+		
+		$query =$this->db->get();
+	echo $this->db->last_query();
+		return $query->result();
+	    }else {
+	        
+	       $this->db->select('ct.*,t.display,t.cdisplay, t.status as status,u.display_name, c.title as complexity_name, p.title as priority_name, s.title as status_title,t.createtask_id');/*,c.title as complexity_name, p.title as priority_name,s.title as status_name*/
+		$this->db->from($this->createtask_tbl.' ct');
+		//$this->db->where('t.status=1');
+		//$this->db->where(" ct.flag=0");
+		
+		$this->db->join($this->complexity_tbl.' c', 'ct.complexity = c.id');
+		$this->db->join($this->priority_tbl.' p', 'ct.priority = p.id');
+		$this->db->join($this->users_tbl.' u', 'ct.created_by = u.id');
+		
+		$this->db->join($this->task_tbl.' t', 'ct.id = t.createtask_id');
+	
+		   
+		    
+	
+		$this->db->join($this->status_tbl.' s', 't.status = s.id');
+		$this->db->order_by('id','DESC');
+		
+		$query =$this->db->get();
+echo $this->db->last_query();
+		return $query->result(); 
+	        
+	        
+	    }
+	}
+
+function incomplete($user_id){
+	    
+	    $se=$this->db->get_where('tm_users', array('id'=>$user_id))->row();
+	    if($se->role!='1'){
+		$this->db->select('ct.*,t.display,t.indisplay,t.status,u.display_name, c.title as complexity_name, p.title as priority_name, s.title as status_title,t.createtask_id');/*,c.title as complexity_name, p.title as priority_name,s.title as status_name*/
+		$this->db->from($this->createtask_tbl.' ct');
+		$this->db->where("FIND_IN_SET($user_id,ct.assigned_to) AND ct.flag=0");
+		$this->db->where('t.status=2');
+		$this->db->join($this->complexity_tbl.' c', 'ct.complexity = c.id');
+		$this->db->join($this->priority_tbl.' p', 'ct.priority = p.id');
+		$this->db->join($this->users_tbl.' u', 'ct.created_by = u.id');
+		
+		$this->db->join($this->task_tbl.' t', 'ct.id = t.createtask_id AND t.user_id='.$user_id);
+	
+		   
+		    
+	
+		$this->db->join($this->status_tbl.' s', 't.status = s.id');
+		$this->db->order_by('id','DESC');
+		
+		$query =$this->db->get();
+	//echo $this->db->last_query();
+		return $query->result();
+	    }else {
+	        
+	       $this->db->select('ct.*,t.display,t.indisplay,t.status as status,u.display_name, c.title as complexity_name, p.title as priority_name, s.title as status_title,t.createtask_id');/*,c.title as complexity_name, p.title as priority_name,s.title as status_name*/
+		$this->db->from($this->createtask_tbl.' ct');
+		$this->db->where('t.status=2');
+		//$this->db->where(" ct.flag=0");
+		
+		$this->db->join($this->complexity_tbl.' c', 'ct.complexity = c.id');
+		$this->db->join($this->priority_tbl.' p', 'ct.priority = p.id');
+		$this->db->join($this->users_tbl.' u', 'ct.created_by = u.id');
+		
+		$this->db->join($this->task_tbl.' t', 'ct.id = t.createtask_id');
+	
+		   
+		    
+	
+		$this->db->join($this->status_tbl.' s', 't.status = s.id');
+		$this->db->order_by('id','DESC');
+		
+		$query =$this->db->get();
+
+		return $query->result(); 
+	        
+	        
+	    }
+	}
+
+function awaiting($user_id){
+	    
+	    $se=$this->db->get_where('tm_users', array('id'=>$user_id))->row();
+	    if($se->role!='1'){
+		$this->db->select('ct.*,t.display,t.status,t.adisplay,u.display_name, c.title as complexity_name, p.title as priority_name, s.title as status_title,t.createtask_id');/*,c.title as complexity_name, p.title as priority_name,s.title as status_name*/
+		$this->db->from($this->createtask_tbl.' ct');
+		$this->db->where("FIND_IN_SET($user_id,ct.assigned_to) AND ct.flag=0");
+		$this->db->where('t.status=4');
+		$this->db->join($this->complexity_tbl.' c', 'ct.complexity = c.id');
+		$this->db->join($this->priority_tbl.' p', 'ct.priority = p.id');
+		$this->db->join($this->users_tbl.' u', 'ct.created_by = u.id');
+		
+		$this->db->join($this->task_tbl.' t', 'ct.id = t.createtask_id AND t.user_id='.$user_id);
+	
+		   
+		    
+	
+		$this->db->join($this->status_tbl.' s', 't.status = s.id');
+		$this->db->order_by('id','DESC');
+		
+		$query =$this->db->get();
+	//echo $this->db->last_query();
+		return $query->result();
+	    }else {
+	        
+	       $this->db->select('ct.*,t.display,t.adisplay,t.status as status,u.display_name, c.title as complexity_name, p.title as priority_name, s.title as status_title,t.createtask_id');/*,c.title as complexity_name, p.title as priority_name,s.title as status_name*/
+		$this->db->from($this->createtask_tbl.' ct');
+		$this->db->where('t.status=4');
+		//$this->db->where(" ct.flag=0");
+		
+		$this->db->join($this->complexity_tbl.' c', 'ct.complexity = c.id');
+		$this->db->join($this->priority_tbl.' p', 'ct.priority = p.id');
+		$this->db->join($this->users_tbl.' u', 'ct.created_by = u.id');
+		
+		$this->db->join($this->task_tbl.' t', 'ct.id = t.createtask_id');
+	
+		   
+		    
+	
+		$this->db->join($this->status_tbl.' s', 't.status = s.id');
+		$this->db->order_by('id','DESC');
+		
+		$query =$this->db->get();
+
+		return $query->result(); 
+	        
+	        
+	    }
+	}
 	function totalTasks($user_id,$role,$req_id=''){
 
 		$this->db->select("ct.*,c.title as complexity_name, p.title as priority_name,u.fname as assigned_to_fname,(SELECT   GROUP_CONCAT(b.display_name ORDER BY b.id) DepartmentName FROM    tm_createtasks a INNER JOIN tm_users b ON FIND_IN_SET(b.id, a.assigned_to) > 0 WHERE a.id=ct.id) as assigned_to,proj.name as project_name,mile.name as milestone_name,cu.display_name as created_user,(SELECT GROUP_CONCAT(concat(tm_users.display_name,' (',tm_status.title,')') SEPARATOR ',')   FROM `tm_tasks`  
@@ -229,6 +634,8 @@ $this->db->where(" ct.flag!=2 ");
 
 
 	function getUnreadTaskCount($userid){
+	     $se=$this->db->get_where('tm_users', array('id'=>$userid))->row();
+	    if($se->role!='1'){
 		$this->db->select("count(t.id) as tcount");
 		$this->db->from($this->task_tbl." t");
 		$this->db->join($this->createtask_tbl." ct", "t.createtask_id=ct.id");
@@ -236,6 +643,16 @@ $this->db->where(" ct.flag!=2 ");
 		$query =$this->db->get();
 		$result= $query->row();
 		return $result->tcount;
+	    }else {
+	       $this->db->select("count(t.id) as tcount");
+		$this->db->from($this->task_tbl." t");
+		$this->db->join($this->createtask_tbl." ct", "t.createtask_id=ct.id");
+		$this->db->where("ct.flag=0 AND t.display='N'");
+		$query =$this->db->get();
+		$result= $query->row();
+		return $result->tcount; 
+	        
+	    }
 	}
 
 	function getAllAssignedTasks($task_id){
@@ -261,7 +678,7 @@ $this->db->where(" ct.flag!=2 ");
 		$this->db->order_by('t.id','DESC');
 
 		$query =$this->db->get();
-		echo $this->db->last_query();
+		//echo $this->db->last_query();
 		return $query->result();
 	}
 

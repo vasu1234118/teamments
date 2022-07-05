@@ -166,21 +166,8 @@ class Requirements extends CI_Controller {
 			$record_data['start_date']=date("Y-m-d",strtotime($record_data['start_date']));
             
 			// Attachment Upload
-			if($_FILES['attachments']['name'][0]) {
-		        $path='./public/attachments/';
-				$title=date('YmdHis');
-				$files = $_FILES['attachments'];
-				$file_return=$this->requirement->upload_files($path, $title, $files);
-
-				// Insert tm_createtasks_attachments
-				foreach($file_return as $fileloop){
-					if(isset($fileloop['file_name'])){
-					$fname=$fileloop['file_name'];
-					$record_data1=array('user_id'=>$this->data['ADMIN_ID'],'milestone_id'=>$this->data['record_info']->id,'file_name'=>$fname);
-					$this->common->saveTable($this->attachments_table, $record_data1);
-					}
-				}
-			}
+			
+				
 
 			// for($i=0;$i<count($assigned_to);$i++){
 			// 	$task_count=$this->common->get_table_count($this->requirements_table,array('user_id'=>$this->data['ADMIN_ID'],'md5(createtask_id)'=>$ctask_md5_id));
@@ -191,6 +178,22 @@ class Requirements extends CI_Controller {
 			// }
 			
 			$this->common->updateTable($this->table,array('md5(id)'=>$edit_id),$record_data);
+			$r=$this->db->get_where($this->table, array('md5(id)'=>$edit_id))->row();
+				if(isset($_FILES['attachments'])) {
+			        $path='./public/attachments/';
+					$title='';
+					$files = $_FILES['attachments'];
+					$file_return=$this->requirement->upload_files($path, $title, $files);
+
+					// Insert tm_createtasks_attachments
+					foreach($file_return as $fileloop){
+						if(isset($fileloop['file_name'])){
+						$fname=$fileloop['file_name'];
+						$record_data=array('user_id'=>$this->data['ADMIN_ID'],'requirement_id'=>$r->id,'file_name'=>$fname);
+						$this->common->saveTable($this->attachments_table, $record_data);
+						}
+					}
+				}
 			$this->session->set_flashdata('message',$this->add_title.' Updated <strong>Successfully</strong>.');
 			redirect(site_url($this->pagename));
 		}

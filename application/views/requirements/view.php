@@ -20,7 +20,7 @@
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-default">
         <div class="box-header with-border">
-          <h3 class="box-title"><?php echo $title; ?> Details</h3>
+          <!--<h3 class="box-title"><?php echo $title; ?> Details</h3>-->
 
           <div class="box-tools pull-right">
             <a href="<?php echo site_url($pagename.'/add_new'); ?>" class="btn btn-danger btn-xs"><i class="fa fa-plus-circle"></i> Add New <?php echo $add_title; ?></a>
@@ -30,7 +30,7 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <table id="referral_table" class="display responsive nowrap" cellspacing="0" width="100%">
+              <table id="referral_table1" class="display responsive nowrap" cellspacing="0" width="100%">
                   <thead>
                         <tr>
                             <th style="width: 1%;">S.no</th>

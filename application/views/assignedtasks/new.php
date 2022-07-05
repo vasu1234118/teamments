@@ -21,8 +21,52 @@
       <?php } ?>
     </div>
     <?php } ?>
-    
-    <form method="post" action="" id="ART_FORM" enctype="multipart/form-data">
+   <!--<script type="text/JavaScript">
+
+
+function validate()
+{ 
+    var descrip = document.getElementById("description").value;
+var precautions=document.getElementById("precautions").value;
+	var step_executed=document.getElementById("step_executed").value;
+		if(descrip  == "")
+	{
+		//alert("Please Enter  description");
+		//error_desc
+		document.getElementById("error_desc").innerHTML = "Please Enter  Goal!";
+		//document.getElementById("error_desc").value="Please Enter  description";
+		
+		
+		return false;
+	}
+	
+			if(precautions  == "")
+	{
+		//alert("Please Enter  description");
+		//error_desc
+		document.getElementById("error_prec").innerHTML = "Please Enter  Description!";
+		//document.getElementById("error_desc").value="Please Enter  description";
+	/*	document.getElementById("precautions").focus();*/
+		
+		return false;
+	}
+	
+	if(step_executed  == "")
+	{
+		//alert("Please Enter  description");
+		//error_desc
+		document.getElementById("error_tse").innerHTML = "Please Enter  Task Step To be Executed !";
+		//document.getElementById("error_desc").value="Please Enter  description";
+		/*document.getElementById("precautions").focus();*/
+		
+		return false;
+	}
+
+	
+	
+}
+</script>-->
+    <form method="post" action="" id="ART_FORM" enctype="multipart/form-data" name="upload" onsubmit="return validate();">
 
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-default">
@@ -40,17 +84,27 @@
                 <input name="project_name" type="text" class="form-control validate[required]" id="project_name">
               </div>
             </div> -->
+            <?php $proadmin_data = $this->session->userdata('proadmin_data');
+   $admin_id = $proadmin_data['TM_ID']; $user=$this->db->get_where('users', array('id'=>$admin_id))->row() ?>
             <div class="col-md-6">
                 <div class="form-group">
                   <label>Project <span class="text-danger">*</span></label>
-                  <select onchange="onProjectChange1(this.value),milestone(this.value), assignproject(this.value) "  class="form-control validate[required]" name="project_id" id="project_id">
+                  <select onchange="onProjectChange1(this.value),milestone(this.value), assignproject(this.value) "  class="form-control"  name="project_id" id="project_id" required="required">
                     <option value="">Select Project</option>
+                    <?php if(($user->role=='1') || ($user->role=='2')){ ?> 
                     <?php foreach($project as $row){ ?>
                     <option value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>
                     <?php } ?>
+                    <?php } else if(($user->role=='4')||($user->role=='3')){ ?>
+                    
+                    <?php  $this->db->from('tm_projects'); $this->db->where("FIND_IN_SET($admin_id, assigned_to)");  $pr=$this->db->get()->result(); 
+ foreach($pr as $r){ ?>
+                        <option value="<?php echo $r->id; ?>"><?php echo $r->name; ?></option>
+                        <?php } ?>
+                  <?php  } ?>
                   </select>
                 </div>
-            </div> 
+            </div>  
             <div class="col-md-3">
                <div class="form-group">
                  <label>Requirement <span class="text-danger"></span></label>
@@ -110,8 +164,8 @@
             
             <div class="col-md-6">
               <div class="form-group">
-                <label>Task Name <span id="error_msg" style="color:red">The field cannot contain more than 35 characters!</span><span class="text-danger">*</span></label>
-                <input name="name" type="text" class="form-control validate[required]" id="name" minlength="5" maxlength="35">
+                <label>Task Name <span style="color:red">The field cannot contain more than 40 characters!</span><span class="text-danger">*</span></label>
+                <input name="name" type="text" class="form-control validate[required]" id="name" minlength="5" maxlength="40">
                 
               </div>
             </div>
@@ -141,21 +195,21 @@
 
             <div class="col-md-6">
               <div class="form-group">
-                <label>Task Goal <span class="text-danger">*</span></label>
-                <textarea name="description" class="form-control validate[required]" id="description" rows="10" cols="80"></textarea>
+                <label>Task Goal <span class="text-danger" id="error_desc" style="color:red">*</span></label>
+                <textarea name="description" class="form-control validate[required]" id="description" required rows="10" cols="80"></textarea>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>Task Description <span class="text-danger">*</span></label>
-                <textarea name="precautions" class="form-control validate[required]" id="precautions" rows="10" cols="80"></textarea>
+                <label>Task Description <span class="text-danger" id="error_prec" style="color:red">*</span></label>
+                <textarea name="precautions" class="form-control" id="precautions" required rows="10" cols="80" id="precautions"></textarea>
               </div>
             </div>
            
             <div class="col-md-6">
               <div class="form-group">
-                <label>Task Step To be Executed <span class="text-danger">*</span></label>
-                <textarea name="step_executed" class="form-control validate[required]" id="step_executed" rows="10" cols="80"></textarea>
+                <label>Task Step To be Executed <span class="text-danger"id="error_tse" style="color:red">*</span></label>
+                <textarea name="step_executed" class="form-control" id="step_executed" required rows="10" cols="80" id=""></textarea>
               </div>
             </div>
               <div class="col-md-2">
@@ -267,8 +321,8 @@
 
             <div class="col-md-12">
               <div class="form-group">
-                <label>Task Related to <span class="text-danger">*</span></label>
-                <select class="form-control select2" multiple="multiple" data-placeholder="Select the taks related"
+                <label>Task Related to </label>
+                <select class="form-control select2" multiple="multiple" data-placeholder="Select The Task Related"
                       style="width: 100%;" name="task_related_to[]" id="task_related_to">
                   <?php foreach($allTasks as $related_task){ ?>
                   <option value="<?php echo $related_task->id; ?>"><?php echo taskId($related_task->id); ?> </option>
@@ -286,7 +340,7 @@
       </div>
       <!-- /.row -->
       
-      <div class="text-center"><a href="<?php echo site_url($pagename); ?>" class="btn btn-default btn-md" name="submit">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary btn-md" name="submit" value="Submit" />&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-warning btn-md" name="save">Save</button></div>
+      <div class="text-center"><a href="<?php echo site_url($pagename); ?>" class="btn btn-default btn-md" name="submit">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary btn-md" name="submit" value="Assign" />&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-warning btn-md" name="save">Save</button></div>
       
     </form>
     </section>
@@ -352,5 +406,9 @@ $(function () {
     CKEDITOR.replace('step_executed');
   })
 </script>
+<script>
 
+
+
+</script>
 

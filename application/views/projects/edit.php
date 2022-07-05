@@ -120,7 +120,7 @@
                 <select class="form-control select2" multiple="multiple" data-placeholder="Select a User"
                       style="width: 100%;" name="assigned_to[]" id="assigned_to">
                   <?php foreach($assigned_users as $user){ ?>
-                  <option <?php if(in_array($user->id, explode(',', $record_info->assigned_to))) echo 'selected'; ?> value="<?php echo $user->id; ?>"><?php echo $user->display_name; ?> ( <?php echo $user->role_name; ?> <?php if($user->id==$ADMIN_ID) echo '-Self'; ?> )</option>
+                  <option <?php if(in_array($user->id, explode(',', $record_info->assigned_to))) echo 'selected'; ?> value="<?php echo $user->id; ?>"><?php echo $user->display_name; ?> ( <?php echo $user->role_name; ?><?php if($user->id==$ADMIN_ID) echo '-Self'; ?> )<?php if($user->etype=='2'){ ?> (External)<?php } ?> </option>
                   <?php } ?>
                 </select>
               </div>
@@ -142,7 +142,7 @@
       </div>
       <!-- /.row -->
       
-      <div class="text-center"><a href="<?php echo site_url($pagename); ?>" class="btn btn-default btn-md" name="submit">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="edit_id" value="<?php echo md5($record_info->id); ?>" /><input type="submit" class="btn btn-primary btn-md" name="update" value="Update" />&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-warning btn-md" name="save">Save</button></div>
+      <div class="text-center"><a href="<?php echo site_url($pagename); ?>" class="btn btn-default btn-md" name="submit">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="edit_id" value="<?php echo md5($record_info->id); ?>" /><input type="submit" class="btn btn-primary btn-md" name="update" value="Update" /><!--<button type="submit" class="btn btn-warning btn-md" name="save">Save</button>--></div>
       
     </form>
     </section>

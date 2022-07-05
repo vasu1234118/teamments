@@ -27,7 +27,7 @@
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-default">
         <div class="box-header with-border">
-          <h3 class="box-title"><?php echo $add_title; ?> Login Info</h3>
+          <!--<h3 class="box-title"><?php echo $add_title; ?> Login Info</h3>-->
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -55,7 +55,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
                 <label>Role <span class="text-danger">*</span></label>
                 <div class="input-group">
@@ -71,15 +71,33 @@
                 </div>
               </div>
             </div>
+            
             <!-- /.col -->
-            <div class="col-md-6">  
-                <div class="form-group">
+            <div class="col-md-4" style="float:right">  
+                <div class="form-group" >
                     <label>Status</label><br />
                 <label>
                       <input name="status" type="radio" class="flat-red" <?php if($record_info->status==1) echo 'checked="checked"'; ?> value="1">&nbsp;Active&nbsp;&nbsp;
                     <input name="status" type="radio" class="flat-red" <?php if($record_info->status==0) echo 'checked="checked"'; ?> value="0">&nbsp;In Active
                     </label>
                 </div>
+            </div>
+            <div class="col-md-4" >
+              <div class="form-group">
+                <label>Employee Type <span class="text-danger">*</span></label>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-suitcase"></i>
+                  </div>
+                  <select class="form-control" name="etype">
+                    <option value="">Select  Employee Type</option>
+                   
+                    <option value="1"  <?php if($record_info->etype==1) echo 'selected="selected"'; ?>>Internal</option>
+                     <option value="2" <?php if($record_info->etype==2) echo 'selected="selected"'; ?> >External</option>
+                
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -182,7 +200,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>Date Of Join</label>
+                <label>Date of Joining</label>
                 <div class="input-group">
                   <div class="input-group-addon">
                     <i class="fa fa-user-o"></i>
@@ -193,7 +211,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>Date Of Leaveing</label>
+                <label>Date of Leaving</label>
                 <div class="input-group">
                   <div class="input-group-addon">
                     <i class="fa fa-user-o"></i>
@@ -269,7 +287,7 @@
       </div>
       <!-- /.row -->
       
-      <div class="text-center"><a href="<?php echo site_url($pagename); ?>" class="btn btn-default btn-md" name="submit">Cancle</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="edit_id" value="<?php echo md5($record_info->id); ?>" /><input type="submit" class="btn btn-primary btn-md" name="update" value="Update" /></div>
+      <div class="text-center"><a href="<?php echo site_url($pagename); ?>" class="btn btn-default btn-md" name="submit">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="edit_id" value="<?php echo md5($record_info->id); ?>" /><input type="submit" class="btn btn-primary btn-md" name="update" value="Update" /></div>
       
     </form>
     </section>

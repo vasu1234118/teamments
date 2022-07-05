@@ -20,7 +20,7 @@
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-default">
         <div class="box-header with-border">
-          <h3 class="box-title"><?php echo $title; ?> Details</h3>
+         <!-- <h3 class="box-title"><?php echo $title; ?> Details</h3>-->
 
           <div class="box-tools pull-right">
             <a href="<?php echo site_url($pagename.'/add_new'); ?>" class="btn btn-danger btn-xs"><i class="fa fa-plus-circle"></i> Add New <?php echo $add_title; ?></a>
@@ -30,13 +30,14 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <table id="referral_table" class="display responsive nowrap" cellspacing="0" width="100%">
+              <table id="referral_table1" class="display responsive nowrap" cellspacing="0" width="100%">
                   <thead>
                         <tr>
                             <th style="width: 1%;">S.no</th>
                             <th style="width: 21%;">Project Name</th>
                             <th style="width: 10;">Start Date</th>
                             <th style="width: 10%;">End Date</th>
+                            
                             <!-- <th style="width: 21%;">Sort Order</th> -->
                             <th style="width: 10%;">Author</th>
                             <th style="width: 10%;">Action</th>
@@ -50,7 +51,7 @@
                           <td><?php echo $row->name;  ?></td>
                           <td><?php echo $row->created_at;?></td>
                           <td><?php echo $row->updated_at;?></td>
-                          <td><?php echo $row->display_name.' ('.$row->user_role.') '; ?></td>
+                                                   <td><?php echo $row->display_name.' ('.$row->user_role.') '; ?></td>
                           <td>
                             <?php if($ADMIN_ID==$row->created_by){?>
                             <!-- <a href="<?php echo site_url($pagename.'/copy/'.md5($row->id)); ?>" title="Copy" onclick="return confirm('Are you sure you want to copy this Task?');"><i class="fa fa-copy"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp; -->

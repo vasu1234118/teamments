@@ -177,13 +177,18 @@ class Common_model extends CI_Model{
 		//dd(current_url());
 		if(empty($flat_data['TM_ID'])){$this->session->sess_destroy();
 			redirect(site_url('welcome?Redirect_url='.current_url()));
-		}
+		} 
+			if(!$flat_data['verified']){
+			redirect(site_url('welcome/otp?Redirect_url='.current_url()));
+		} 
 	}
 	
 	public function get_table_count($table,$where_array){
 		$this->db->from($table)->where($where_array);
 		$query =$this->db->get();
+		//echo $this->db->last_query();
 		return $query->num_rows();
+
 	//return $query->num_rows();
 	}
 	

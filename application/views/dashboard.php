@@ -105,7 +105,7 @@
                   <div class="col-sm-3 border-right">
                     <div class="description-block">
                       <h5 class="description-header"><?php echo $totaltasks_count-($newtasks_count+$closedtasks_count); ?></h5>
-                      <span class="description-text">Open Tasks</span>
+                      <span class="description-text">Pending Tasks</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -113,7 +113,7 @@
                   <div class="col-sm-3 border-right">
                     <div class="description-block">
                       <h5 class="description-header"><?php echo $closedtasks_count; ?></h5>
-                      <span class="description-text">Completed Tasks</span>
+                      <span class="description-text"><a href="<?php echo base_url() ?>taskinbox/completed">Completed Tasks</a></span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -121,7 +121,7 @@
                   <div class="col-sm-3">
                     <div class="description-block">
                       <h5 class="description-header"><?php echo $totaltasks_count; ?></h5>
-                      <span class="description-text">Total Tasks</span>
+                      <span class="description-text"><a href="<?php echo base_url() ?>">Total Tasks</a></span>
                     </div>
                     <!-- /.description-block -->
                   </div>

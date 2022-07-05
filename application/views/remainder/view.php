@@ -5,7 +5,7 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Saved Task</h1>
+      <h1>Reminder</h1>
     </section>
 
     <!-- Main content -->
@@ -23,8 +23,8 @@
           <h3 class="box-title"><?php //echo $title; ?> </h3>
         </div>
         <!-- /.box-header -->
-        <?php $proadmin_data =$this->session->userdata('proadmin_data');  $user_id= $proadmin_data['TM_ID'];  $todaydate = date('Y-m-d'); $rec=$this->db->get_where('tm_tasks', array('remainder_date'=>$todaydate,'user_id'=> $user_id))->result();
-         ?> 
+           <?php $proadmin_data =$this->session->userdata('proadmin_data');  $user_id= $proadmin_data['TM_ID'];  $todaydate = date('Y-m-d'); $rec=$this->db->get_where('tm_tasks', array('remainder_date <='=>$todaydate,'remainder_date !='=>'1970-01-01','user_id'=> $user_id,'status!=' =>'1','remainder_date!=' =>'0000-00-00', ))->result();
+          ?> 
 
         <div class="box-body">
           <div class="row">

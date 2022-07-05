@@ -541,5 +541,5 @@ switch (ENVIRONMENT) {
 }
 
 if ($_SERVER['HTTP_HOST'] == 'localhost') {
-    $config['base_url'] = 'http://localhost/project/task';
+    $config['base_url'] = 'http://dqci.in/';
 }

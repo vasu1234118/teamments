@@ -48,7 +48,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>Tiltle <span class="text-danger">*</span></label>
+                <label>Title <span class="text-danger">*</span></label>
                 <input name="name" type="text" class="form-control validate[required]" id="name">
               </div>
             </div>

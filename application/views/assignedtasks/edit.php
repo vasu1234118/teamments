@@ -25,9 +25,12 @@
       <div class="box box-default">
         <?php if($record_info->flag==2){ ?>
         <div class="alert alert-warning">
-          <i class="fa fa-save" style="font-size:20px;color:red"></i>&nbsp;&nbsp;This task was saved task.
+          <i class="fa fa-save" style="font-size:20px;color:red"></i>&nbsp;&nbsp;This task is saved task.
         </div>
       <?php } ?>
+      
+      <?php $proadmin_data = $this->session->userdata('proadmin_data');
+   $admin_id = $proadmin_data['TM_ID']; $user=$this->db->get_where('users', array('id'=>$admin_id))->row() ?>
         <!-- /.box-header -->
         <div class="box-body">
           <div class="box-body">
@@ -38,9 +41,17 @@
                   <label>Project <span class="text-danger">*</span></label>
                   <select onchange="onProjectChange1(this.value),milestone(this.value) " class="form-control validate[required]" name="project_id" id="project_id">
                     <option value="">Select Project</option>
+                    <?php if(($user->role=='1') || ($user->role=='2')){ ?> 
                     <?php foreach($project as $row){ ?>
                     <option <?php echo $row->id==$record_info->project_id?"selected":''; ?> value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>
                     <?php } ?>
+                    
+                    <?php } else if(($user->role=='4')||($user->role=='3')){ ?>
+                     <?php  $this->db->from('tm_projects'); $this->db->where("FIND_IN_SET($admin_id, assigned_to)");  $pr=$this->db->get()->result(); 
+ foreach($pr as $r){ ?>
+ 
+ <option <?php echo $r->id==$record_info->project_id?"selected":''; ?> value="<?php echo $r->id; ?>"><?php echo $r->name; ?></option>
+                    <?php } } ?>
                   </select>
                 </div>
             </div> 
@@ -50,7 +61,7 @@
                  <label>Requirement <span class="text-danger"></span></label>
                  <select class="form-control " name="requirement_id" id="requirement_id">
                     <?php foreach ($ca as $ks) {  ?>
-   <option value="<?php echo $ks->id ?>" <?php if($record_info->requirement_id=$ks->id){ echo "selected='selected'";} ?>><?php echo $ks->name?></option>
+   <option value="<?php echo $ks->id ?>" <?php if($record_info->requirement_id==$ks->id){ echo "selected='selected'";} ?>><?php echo $ks->name?></option>
    <?php  } ?>
                    
                  </select>
@@ -76,12 +87,13 @@
   }
 </script>
              <div class="col-md-3">
+                 
                 <div class="form-group">
                     <?php   $mi= $this->db->get_where('milestones', array('project_id'=>$record_info->project_id))->result();  ?>
                   <label>Milestone <span class="text-danger">*</span></label>
                   <select class="form-control validate[required]" name="milestone_id" id="milestone_id">
                     <?php foreach ($mi as $se) {  ?>
-   <option value="<?php echo $se->id ?>" <?php if($record_info->milestone_id=$se->id){ echo "selected='selected'";} ?>><?php echo $se->name?></option>
+   <option value="<?php echo $se->id ?>" <?php if($record_info->milestone_id==$se->id){ echo "selected='selected'";} ?>><?php echo $se->name?></option>
    <?php  } ?>
                     
                   </select>
@@ -112,13 +124,14 @@
                 <input name="name" type="text" class="form-control validate[required]" id="name" value="<?php echo $record_info->name; ?>">
               </div>
             </div>
+            
             <div class="col-md-3">
               <div class="form-group">
                 <label>Complexity <span class="text-danger">*</span></label>
                 <select class="form-control" name="complexity" id="complexity">
                   <option value="">Select Complexity</option>
-                  <?php foreach($complexity as $row){ ?>
-                  <option <?php if($row->id==$record_info->complexity) echo 'selected'; ?> value="<?php echo $row->id; ?>"><?php echo $row->title; ?></option>
+                  <?php foreach($complexity as $row1){ ?>
+                  <option <?php if($row1->id==$record_info->complexity) echo 'selected'; ?> value="<?php echo $row1->id; ?>"><?php echo $row1->title; ?></option>
                   <?php } ?>
                 </select>
               </div>
@@ -275,7 +288,7 @@
           
             <div class="col-md-12">
               <div class="form-group">
-                <label>Task Related to <span class="text-danger">*</span></label>
+                <label>Task Related to </label>
                 <select class="form-control select2" multiple="multiple" data-placeholder="Select the taks related"
                       style="width: 100%;" name="task_related_to[]" id="task_related_to">
                   <?php foreach($allTasks as $related_task){ ?>
@@ -295,7 +308,7 @@
       </div>
       <!-- /.row -->
       
-      <div class="text-center"><a href="<?php echo site_url($pagename); ?>" class="btn btn-default btn-md" name="submit">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="edit_id" value="<?php echo md5($record_info->id); ?>" /><input type="submit" class="btn btn-primary btn-md" name="update" value="Update" />&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-warning btn-md" name="save">Save</button></div>
+      <div class="text-center"><a href="<?php echo site_url($pagename); ?>" class="btn btn-default btn-md" name="submit">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="edit_id" value="<?php echo md5($record_info->id); ?>" /><input type="submit" class="btn btn-primary btn-md" name="update" value="Update" onclick="return confirm('Are you sure you want to assign the Task ?')"; />&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-warning btn-md" name="save">Save</button></div>
       
     </form>
     </section>

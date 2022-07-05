@@ -42,8 +42,14 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body" style="padding: 5px 20px;">
-    <div class="row" style="background-color: #444; padding: 10px;">
-    	<!-- <img src="<?php echo site_url('public/img/logo.png'); ?>" class="img img-responsive center-block"> -->
+    <div class="row" >
+    	<img src="<?php echo site_url('public/img/logo.png'); ?>" class="img img-responsive center-block" style="border: 2px dashed black; border-radius: 15px;
+    height: 120px;
+    padding-left: 85px;
+    width: 100;
+    padding-right: 85px;
+    padding-bottom: 10px;
+    padding-top: 10px;">
     </div>
     <p class="login-box-msg" style="padding: 20px;"><b>Sign in to start your session</b></p>
     <form action="<?php echo isset($_GET['Redirect_url'])?site_url('welcome/check_signin?Redirect_url=').$_GET['Redirect_url']:site_url('welcome/check_signin?Redirect_url='); ?>" method="post" id="ART_FORM_EID">

@@ -27,7 +27,7 @@
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-default">
         <div class="box-header with-border">
-          <h3 class="box-title"><?php echo $add_title; ?> Details</h3>
+         <!-- <h3 class="box-title"><?php echo $add_title; ?> Details</h3>-->
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -120,7 +120,7 @@
                 <select class="form-control select2" multiple="multiple" data-placeholder="Select a User"
                       style="width: 100%;" name="assigned_to[]" id="assigned_to">
                   <?php foreach($assigned_users as $user){ ?>
-                  <option value="<?php echo $user->id; ?>"><?php echo $user->display_name; ?> ( <?php echo $user->role_name; ?> <?php if($user->id==$ADMIN_ID) echo '-Self'; ?> )</option>
+                  <option value="<?php echo $user->id; ?>"><?php echo $user->display_name; ?> ( <?php echo $user->role_name; ?> <?php if($user->id==$ADMIN_ID) echo '-Self'; ?> )<?php if($user->etype=='2'){ ?> (External)<?php } ?></option>
                   <?php } ?>
                 </select>
               </div>
@@ -138,7 +138,7 @@
       </div>
       <!-- /.row -->
       
-      <div class="text-center"><a href="<?php echo site_url($pagename); ?>" class="btn btn-default btn-md" name="submit">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary btn-md" name="submit" value="Submit" />&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-warning btn-md" name="save">Save</button></div>
+      <div class="text-center"><a href="<?php echo site_url($pagename); ?>" class="btn btn-default btn-md" name="submit">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary btn-md" name="submit" value="Assign" />&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-warning btn-md" name="save">Save</button></div>
       
     </form>
     </section>

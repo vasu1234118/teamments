@@ -46,12 +46,18 @@ class Leave_model extends CI_Model{
         return $uploadData;
     }
 
-	function allLeaves(){
+	function allLeaves($user_id){
+	    
+	     $se=$this->db->get_where('tm_users', array('id'=>$user_id))->row();
 		$this->db->select('lt.*,u.display_name as display_name,rt.title as user_role');
 		$this->db->from($this->leaves_tbl.' lt');
 		$this->db->join($this->users.' u', 'lt.user_id = u.id','left');
         $this->db->join($this->roles_tbl.' rt', 'rt.id = u.role','left')
         ->where_not_in('lt.flag',[1]);
+        if(!(($se->role=='1')||($se->role=='3'))){
+            $this->db->where('user_id', $user_id);
+        }
+        
 		$this->db->order_by('lt.from_date','ASC');
 		
 		$query =$this->db->get();		
@@ -159,6 +165,51 @@ class Leave_model extends CI_Model{
 		}
 		return $tak_count;
 	}
+
+	public function avaliableleaves($empid){
+	$today=date('y-m-d');
+ $jo=$this->db->get_where('tm_users', array('id'=>$empid))->row()->doj;
+
+return (int)abs((strtotime($today) - strtotime($jo))/(60*60*24*30))*1.5;
+
+
+
+}
+
+public function leavemange($empid){
+	$data=[];
+$u=$this->db->get_where('tm_users', array('id'=>$empid))->row();
+$jd=date('Y-m-d', strtotime($u->doj));
+
+$cd=date('Y-m-d');
+
+$jy= date('Y', strtotime($jd));
+$cy=date('Y', strtotime($cd));
+
+for($i=$jy; $i<=$cy; $i++){
+if($i==$jy){
+$fd=$jd;
+}else{
+$fd=date("$i-04-01");	
+}
+
+$td=date("$i-03-31");	
+	if(strtotime($fd)>strtotime($td)){
+$td=date(($i+1)."-03-31");	
+
+}
+
+if($i==$cy){
+	$td=$cd;
+}	
+$al=(int)abs((strtotime($td) - strtotime($fd))/(60*60*24*30))*1.5;
+$this->db->select("sum(ldays) as count");
+$ul= $this->db->get_where('leaves',array('status'=>'1','created_by'=>$empid,"from_date>='$fd' "=>'',"from_date<='$td' "=>'' ))->row()->count;
+$data[]=['year'=>$i,'avaliableleaves'=>$al,'used'=>$ul,'period'=>$fd."--".$td];
+}
+return $data;
+
+}
 
 	function getTaskDetails($task_id_md5){
 		$this->db->select('ct.*, c.title as complexity_title, p.title as priority_title');

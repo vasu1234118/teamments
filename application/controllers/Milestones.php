@@ -79,7 +79,7 @@ class Milestones extends CI_Controller {
 				// Attachment Upload
 				if(isset($_FILES['attachments'])) {
 			        $path='./public/attachments/';
-					$title=date('YmdHis');
+					$title='';
 					$files = $_FILES['attachments'];
 					$file_return=$this->milestone->upload_files($path, $title, $files);
 
@@ -152,7 +152,7 @@ class Milestones extends CI_Controller {
 			// Attachment Upload
 			if($_FILES['attachments']['name'][0]) {
 		        $path='./public/attachments/';
-				$title=date('YmdHis');
+				$title='';
 				$files = $_FILES['attachments'];
 				$file_return=$this->milestone->upload_files($path, $title, $files);
 
@@ -179,7 +179,9 @@ class Milestones extends CI_Controller {
 			redirect(site_url($this->pagename));
 		}
 
-		// $this->data['attachments']=$this->common->getAllRecords('id,file_name', $this->attachments_table, array('user_id='.$this->data['ADMIN_ID'].' AND md5(milestone_id)='.$ctask_md5_id), array('id','DESC'), array($this->limit,0));
+	
+		$this->data['attachments']=$this->common->getAllRecords('id,file_name', $this->attachments_table, array('user_id'=>$this->data['ADMIN_ID'],'md5(milestone_id)'=>$ctask_md5_id), array('id','DESC'), array($this->limit,0));
+		
 		$this->data['project']=$this->common->getAllRecords('id,name', $this->project_table, '', array('sort_order','DESC'), array($this->limit,0));
 		// 	$this->data['complexity']=$this->common->getAllRecords('id,title', $this->complexity_table, '', array('order','ASC'), array($this->limit,0));
 		// $this->data['priority']=$this->common->getAllRecords('id,title', $this->priority_table, '', array('order','ASC'), array($this->limit,0));

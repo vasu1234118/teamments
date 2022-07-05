@@ -5,7 +5,7 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Edit <?php echo $add_title; ?></h1>
+      <h1> <?php echo $add_title; ?></h1>
       <ol class="breadcrumb">
         <li>Note: <span class="text-danger">'*'</span> mark fields are mandatory.</li>
       </ol>
@@ -208,25 +208,25 @@
             
             <div class="col-md-6">
               <div class="form-group">
-                <label>Outcome Generated <span class="text-danger">*</span></label>
+                <label>Outcome Generated <span class="text-danger"></span></label>
                 <textarea name="outcome_generated" class="form-control validate[required]" id="outcome_generated" rows="10" cols="80"><?php echo $task_info->outcome_generated; ?></textarea>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>Problems Faced <span class="text-danger">*</span></label>
+                <label>Problems Faced <span class="text-danger"></span></label>
                 <textarea name="problems_faced" class="form-control validate[required]" id="problems_faced" rows="10" cols="80"><?php echo $task_info->problems_faced; ?></textarea>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>Learning <span class="text-danger">*</span></label>
+                <label>Learning <span class="text-danger"></span></label>
                 <textarea name="learning" class="form-control validate[required]" id="learning" rows="10" cols="80"><?php echo $task_info->learning; ?></textarea>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>Time Duration (Hrs)<span class="text-danger">*</span></label>
+                <label>Time Duration (Hrs)<span class="text-danger"></span></label>
                 <input type="text" name="time_duration" class="form-control validate[required]" id="time_duration" value="<?php echo $task_info->time_duration; ?>" />
               </div>
             </div>
@@ -338,13 +338,30 @@ K
                  </select>
                </div>
            </div>
+            
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="form-group">
-                <label>Upload Attachments (.doc, .xls, .pdf, .jpg, .png) <span class="text-danger">*</span></label>
-                <input type="file" name="attachments[]" multiple id="attachments">
+                <label>Upload Attachments (.doc, .jpg, .png, .pdf, .xls) <span class="text-danger">*</span></label>
+                
               </div>
             </div>
+            <div class="row row mr field_wrapper">
+            <div class="col-md-10">
+              <div class="form-group">
+                
+                <input type="file" name="attachments[]" multiple id="attachments" class="form-control" />
+              </div>
+            </div>
+            <div class="col-md-2">
+                                <div class="form-group">
+                               
+                                    
+                                    <button type="button" style="margin-top: 18px; padding: 0px 5px;" id="row0" class="btn btn-success pull-left add_button"><i class="fa fa-plus-square"></i></button>
+                                    
+                                </div>
+                            </div>
+             </div>
 
             <?php if($myattachments){ ?>
             <div class="col-md-12" style="padding-bottom: 10px;">
@@ -371,14 +388,140 @@ K
       </div>
       <!-- /.row -->
       
-      <div class="text-center"><a href="<?php echo site_url($pagename); ?>" class="btn btn-default btn-md" name="submit">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="edit_id" value="<?php echo md5($record_info->id); ?>" /><input type="submit" class="btn btn-primary btn-md" name="update" value="Submit" /></div>
+      <div class="text-center"><?php if(($task_info->status=='5')||($task_info->status=='3')){ ?>
+      <a href="<?php echo site_url($pagename); ?>" class="btn btn-default btn-md" name="submit">Cancel</a>
+      <?php } else if($task_info->status=='1'){ ?>
+      <a href="<?php echo base_url(); ?>taskinbox/completed" class="btn btn-default btn-md" name="submit">Cancel</a>
+      <?php } if($task_info->status=='2'){  ?>
+      <a href="<?php echo base_url(); ?>taskinbox/incomplete" class="btn btn-default btn-md" name="submit">Cancel</a>
+      <?php }if($task_info->status=='4'){ ?>
+      <a href="<?php echo base_url(); ?>taskinbox/awaiting" class="btn btn-default btn-md" name="submit">Cancel</a>
+      <?php } ?>
+      &nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="edit_id" value="<?php echo md5($record_info->id); ?>" /><input type="submit" class="btn btn-primary btn-md" name="update" value="Submit" /></div>
       
     </form>
+    
+    
+              <div class="box box-default">
+        <div class="box-header with-border">
+          <h3 class="box-title">Task Audit Trail</h3>
+        </div>
+        <?php //print_r($taskstatus)?>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="box-body">
+          <div class="row">
+            
+          
+
+
+             <div class="col-md-12">
+             <div class="p-4">
+      
+    <table class="table table-bordered track_tbl">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Date</th>
+                
+                <th>Field Name</th>
+                <th>Old Value</th>
+                <th>New Value</th>
+                  <th>Changed By</th>
+            </tr>
+        </thead>
+        <tbody>
+          <?php  $proadmin_data =$this->session->userdata('proadmin_data');   $id= $proadmin_data['TM_ID']; 
+          $res=$this->db->get_where('users', array('id'=>$id))->row();
+          $tm_status = $this->db->get('status')->result();
+          $tm_sub_status = $this->db->get('sub_status')->result();
+          $tm_task_progress = $this->db->get('task_progress')->result();
+          foreach($tm_status as $v){
+              $statuslist[$v->id]=$v;
+          }
+          foreach($tm_sub_status as $v){
+              $substatuslist[$v->id]=$v;
+          }
+          foreach($tm_task_progress as $v){
+              $done[$v->id]=$v;
+          }
+          $this->db->select('a.crdate as `date`,a.type as field,a.old_data ,a.new_data');
+          $this->db->from('taskaudit as a');
+          //$this->db->where('a.createdby=$id and a.task_id='.$task_info->id);
+          $this->db->where('a.createdby',$id);
+          $this->db->where('a.task_id',$record_info->id);
+          	$this->db->order_by('a.id','DESC');
+          $changes =$this->db->get()->result();
+          //echo $this->db->last_query();
+          //echo $this->db->last_query();
+          foreach($changes as $key=> $change) { ?>
+            <tr class="<?php echo $key==0?'active':'';?>">
+                <td class="track_dot">
+                    <span class="track_line"></span>
+                </td>
+               
+                <td><?php echo $change->date?></td>
+                <td><?php if($change->field=='status') { echo "Status"; } else if($change->field=='sub_status') { echo "Sub_status"; } else if($change->field=='task_progress') { echo "Done%"; } ?></td>
+                <?php if($change->field=='status') { ?>
+                <td><?php echo $statuslist[$change->old_data]->title;?></td>
+                <td><?php echo $statuslist[$change->new_data]->title; ?></td>
+                <?php }else if($change->field=='sub_status'){ ?>
+                <td><?php echo $substatuslist[$change->old_data]->name;?></td>
+                <td><?php echo $substatuslist[$change->new_data]->name; ?></td>
+                <?php }else if($change->field=='task_progress'){ ?>
+                <td><?php echo $done[$change->old_data]->progress;?></td>
+                <td><?php echo $done[$change->new_data]->progress; ?></td>
+                <?php } ?>
+
+                <td><?php echo $res->fname?> <?php echo $res->lname?></td>
+            </tr>
+          <?php } ?>  
+        </tbody>
+    </table>
+    </div>
+            </div> 
+            </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+      </div>
+      
+      <!-- /.box -->
+      </div>
+            
     </section>
     <!-- /.content -->
   </div>
 <?php $this->load->view('include/footer.php'); ?>
 <!-- CK Editor -->
+<script type="text/javascript">
+$(document).ready(function(){
+    var maxField = 10; //Input fields increment limitation
+    var addButton = $('.add_button'); //Add button selector
+    var wrapper = $('.field_wrapper'); //Input field wrapper
+    var fieldHTML = "<div class='row mr field_wrapper'><div class='col-md-10'><div class='form-group'><div class='col-md-12'><input type='file'name='attachments[]'class='form-control documentname form-control-opposite'></div></div></div><div class='col-md-2 vasu' ><div class='form-group'><a type='button' style='padding: 0px 5px;margin-top:18px;' class='btn btn-danger pull-left remove_button '><i class='fa fa-minus-square'></i></a></div></div></div></div></div>"; //New input field html 
+    var x = 1; //Initial field counter is 1
+    
+    //Once add button is clicked
+    $(addButton).click(function(){
+        //Check maximum number of input fields
+        
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); //Add field html
+        
+    });
+    
+    //Once remove button is clicked
+    $(wrapper).on('click', '.remove_button', function(e){
+        e.preventDefault();
+       $(this).closest(".mr").remove();
+
+ //Remove field html
+        x--; //Decrement field counter
+    });
+});
+</script>
+
 <script src="<?php echo site_url('public/bower_components/ckeditor/ckeditor.js'); ?>"></script>
 <script>
 
@@ -409,7 +552,7 @@ $("input[name=remainder_date]").datepicker({
         autoclose: true, 
         todayHighlight: true,
         //setValue:'01/10/2014'
-  }).datepicker('update', '<?php echo $task_info->remainder_date=='0000-00-00'||$task_info->remainder_date==''?date('d-M-Y'):date('d-M-Y',strtotime($task_info->remainder_date)); ?>');
+  }).datepicker('update', '<?php echo $task_info->remainder_date=='0000-00-00'||$task_info->remainder_date=='1970-01-01'||$task_info->remainder_date==''?'':date('d-M-Y',strtotime($task_info->remainder_date)); ?>');
 
 </script>
 <?php echo $task_info->actual_end_date; ?>

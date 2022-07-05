@@ -185,12 +185,11 @@ height: auto;
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
-               <?php $proadmin_data =$this->session->userdata('proadmin_data');  $user_id= $proadmin_data['TM_ID'];  $todaydate = date('Y-m-d'); $rec=$this->db->get_where('tm_tasks', array('remainder_date'=>$todaydate,'user_id'=> $user_id))->result();
-         ?> 
-              <span class="label label-warning"><?php echo count($rec);?></span>
+            
+              <span class="label label-warning">1</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header"><a href="<?php echo base_url() ?>remainder">Remainder On</a></li>
+             <!-- <li class="header"><a href="<?php echo base_url() ?>remainder">Remind me on</a></li>-->
             </ul>
           </li>
           <!-- User Account: style can be found in dropdown.less -->
@@ -225,11 +224,13 @@ height: auto;
               </li> -->
               <!-- Menu Footer-->
               <li class="user-footer">
-                <!-- <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div> -->
+                     <?php if($ADMIN_ROLE_ID==1){ ?>
+                 <div class="pull-left">
+                  <a href="<?php echo base_url() ?>logs" class="btn btn-info btn-flat">Logs</a>
+                </div>
+                <?php } ?>
                 <div class="pull-right">
-                  <a href="<?php echo site_url('welcome/logout'); ?>" class="btn btn-success btn-flat">Sign out</a>
+                  <a href="<?php echo site_url('welcome/logout'); ?>" class="btn btn-info btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>

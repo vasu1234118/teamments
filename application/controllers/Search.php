@@ -58,12 +58,8 @@ class search extends CI_Controller
 			$this->data['records'] = $this->task->allAssignedTasks($this->data['ADMIN_ID'], $_GET['req_id']);
 		else
 			$this->data['records'] = $this->task->allAssignedTasks($this->data['ADMIN_ID']);
-		$admin=$this->data['ADMIN_ROLE_ID'];
-	if($admin =='20'){
-		$this->load->view($this->pagename . '/admin_search', $this->data);
-	} else {
+	
 		$this->load->view($this->pagename . '/search', $this->data);
-	}
 
 		
 		

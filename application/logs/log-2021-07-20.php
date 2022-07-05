@@ -1,15 +1,121 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-ERROR - 2021-07-20 03:22:40 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-20 03:22:49 --> Query error: Unknown column 'project_id' in 'where clause' - Invalid query: SELECT *
-FROM `tm_sub_status`
-WHERE `project_id` = '2'
-ERROR - 2021-07-20 03:23:45 --> Severity: error --> Exception: Object of class stdClass could not be converted to string D:\xampp\htdocs\project\task\application\views\taskinbox\edit.php 322
-ERROR - 2021-07-20 03:29:16 --> Severity: Warning --> Invalid argument supplied for foreach() D:\xampp\htdocs\project\task\application\controllers\Taskinbox.php 90
-ERROR - 2021-07-20 03:35:04 --> Severity: Warning --> Invalid argument supplied for foreach() D:\xampp\htdocs\project\task\application\controllers\Taskinbox.php 90
-ERROR - 2021-07-20 03:38:32 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-20 03:40:17 --> Severity: Warning --> mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() D:\xampp\htdocs\project\task\system\libraries\Email.php 1902
-ERROR - 2021-07-20 03:40:31 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-20 03:40:48 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-20 03:41:16 --> Severity: Warning --> Invalid argument supplied for foreach() D:\xampp\htdocs\project\task\application\controllers\Taskinbox.php 90
-ERROR - 2021-07-20 10:46:57 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
+ERROR - 2021-07-20 10:25:23 --> Severity: Notice --> Undefined property: stdClass::$picture /home/bdi8onyxofri/public_html/application/controllers/Welcome.php 47
+ERROR - 2021-07-20 11:17:51 --> 404 Page Not Found: Faviconico/index
+ERROR - 2021-07-20 16:47:53 --> Severity: Notice --> Undefined property: stdClass::$picture /home/bdi8onyxofri/public_html/application/controllers/Welcome.php 47
+ERROR - 2021-07-20 17:04:34 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 17:04:34 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 17:04:34 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 17:04:34 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:21:04 --> Query error: Unknown column 'task_progress' in 'field list' - Invalid query: UPDATE `tm_tasks` SET `outcome_generated` = '<p>BNS ensures that crical and sensive Informaon will not: leak out, get breached, get stolen, change without authorizaon or maliciously.</p>\r\n\r\n<p>BNS secures from MITM , authorized supply chain, and also Insiders. Even when aackers have IT privileges and encrypon keys.</p>\r\n\r\n<p>BNS is market leader in bit-level security (@Data Link Layer).&nbsp;BNS is Invisible in the network (no MAC nor IP address).</p>\r\n', `problems_faced` = '', `learning` = '', `time_duration` = '', `status` = '2', `actual_start_date` = '2021-07-20', `actual_end_date` = '2021-07-20', `task_progress` = 'A PHP Error was encountered Severity: Notice Message: Undefined property: stdClass::$task_progress Filename: taskinbox/edit.php Line Number: 278 Backtrace: File: /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php Line: 278 Function: _error_handler File: /home/bdi8onyxofri/public_html/application/controllers/Taskinbox.php Line: 120 Function: view File: /home/bdi8onyxofri/public_html/index.php Line: 315 Function: require_once value=\"1\">25%'
+WHERE md5(createtask_id) = '839ab46820b524afda05122893c2fe8e'
+AND `user_id` = '42'
+ERROR - 2021-07-20 18:21:40 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:21:40 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:21:40 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:21:40 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:21:45 --> Query error: Unknown column 'task_progress' in 'field list' - Invalid query: UPDATE `tm_tasks` SET `outcome_generated` = '<p>BNS ensures that crical and sensive Informaon will not: leak out, get breached, get stolen, change without authorizaon or maliciously.</p>\r\n\r\n<p>BNS secures from MITM , authorized supply chain, and also Insiders. Even when aackers have IT privileges and encrypon keys.</p>\r\n\r\n<p>BNS is market leader in bit-level security (@Data Link Layer).&nbsp;BNS is Invisible in the network (no MAC nor IP address).</p>\r\n', `problems_faced` = '', `learning` = '', `time_duration` = '', `status` = '2', `actual_start_date` = '2021-07-20', `actual_end_date` = '2021-07-20', `task_progress` = 'A PHP Error was encountered Severity: Notice Message: Undefined property: stdClass::$task_progress Filename: taskinbox/edit.php Line Number: 278 Backtrace: File: /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php Line: 278 Function: _error_handler File: /home/bdi8onyxofri/public_html/application/controllers/Taskinbox.php Line: 120 Function: view File: /home/bdi8onyxofri/public_html/index.php Line: 315 Function: require_once value=\"1\">25%'
+WHERE md5(createtask_id) = '839ab46820b524afda05122893c2fe8e'
+AND `user_id` = '42'
+ERROR - 2021-07-20 18:21:52 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:21:52 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:21:52 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:21:52 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:22:22 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:22:22 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:22:22 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:22:22 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:22:35 --> Query error: Unknown column 'task_progress' in 'field list' - Invalid query: UPDATE `tm_tasks` SET `outcome_generated` = '<p>trgrd</p>\r\n', `problems_faced` = '', `learning` = '', `time_duration` = '', `status` = '1', `actual_start_date` = '2021-07-20', `actual_end_date` = '2021-07-20', `task_progress` = 'A PHP Error was encountered Severity: Notice Message: Undefined property: stdClass::$task_progress Filename: taskinbox/edit.php Line Number: 278 Backtrace: File: /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php Line: 278 Function: _error_handler File: /home/bdi8onyxofri/public_html/application/controllers/Taskinbox.php Line: 120 Function: view File: /home/bdi8onyxofri/public_html/index.php Line: 315 Function: require_once value=\"1\">25%'
+WHERE md5(createtask_id) = '839ab46820b524afda05122893c2fe8e'
+AND `user_id` = '42'
+ERROR - 2021-07-20 18:25:33 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:25:33 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:25:33 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:25:33 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:26:29 --> Query error: Unknown column 'task_progress' in 'field list' - Invalid query: UPDATE `tm_tasks` SET `outcome_generated` = '<p>trgrd</p>\r\n', `problems_faced` = '', `learning` = '', `time_duration` = '', `status` = '1', `actual_start_date` = '2021-07-20', `actual_end_date` = '2021-07-20', `task_progress` = 'A PHP Error was encountered Severity: Notice Message: Undefined property: stdClass::$task_progress Filename: taskinbox/edit.php Line Number: 278 Backtrace: File: /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php Line: 278 Function: _error_handler File: /home/bdi8onyxofri/public_html/application/controllers/Taskinbox.php Line: 120 Function: view File: /home/bdi8onyxofri/public_html/index.php Line: 315 Function: require_once value=\"1\">25%'
+WHERE md5(createtask_id) = '839ab46820b524afda05122893c2fe8e'
+AND `user_id` = '42'
+ERROR - 2021-07-20 18:26:38 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:26:38 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:26:38 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:26:38 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 18:28:56 --> Query error: Unknown column 'task_progress' in 'field list' - Invalid query: UPDATE `tm_tasks` SET `outcome_generated` = '<p>trgrd</p>\r\n', `problems_faced` = '', `learning` = '', `time_duration` = '', `status` = '1', `actual_start_date` = '2021-07-20', `actual_end_date` = '2021-07-20', `task_progress` = 'A PHP Error was encountered Severity: Notice Message: Undefined property: stdClass::$task_progress Filename: taskinbox/edit.php Line Number: 278 Backtrace: File: /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php Line: 278 Function: _error_handler File: /home/bdi8onyxofri/public_html/application/controllers/Taskinbox.php Line: 120 Function: view File: /home/bdi8onyxofri/public_html/index.php Line: 315 Function: require_once value=\"1\">25%'
+WHERE md5(createtask_id) = '839ab46820b524afda05122893c2fe8e'
+AND `user_id` = '42'
+ERROR - 2021-07-20 19:01:47 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:01:47 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:01:47 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:01:47 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:01:54 --> Query error: Unknown column 'task_progress' in 'field list' - Invalid query: UPDATE `tm_tasks` SET `outcome_generated` = '', `problems_faced` = '', `learning` = '', `time_duration` = '', `status` = '5', `actual_start_date` = '2021-07-20', `actual_end_date` = '2021-07-20', `task_progress` = 'A PHP Error was encountered Severity: Notice Message: Undefined property: stdClass::$task_progress Filename: taskinbox/edit.php Line Number: 278 Backtrace: File: /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php Line: 278 Function: _error_handler File: /home/bdi8onyxofri/public_html/application/controllers/Taskinbox.php Line: 120 Function: view File: /home/bdi8onyxofri/public_html/index.php Line: 315 Function: require_once value=\"1\">25%'
+WHERE md5(createtask_id) = '839ab46820b524afda05122893c2fe8e'
+AND `user_id` = '42'
+ERROR - 2021-07-20 19:01:56 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:01:56 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:01:56 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:01:56 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:02:31 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:02:31 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:02:31 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:02:31 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:07:46 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:07:46 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:07:46 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:07:46 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:08:50 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:08:50 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:08:50 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:08:50 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:08:51 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:08:51 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:08:51 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:08:51 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:10:56 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:10:56 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:10:56 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:10:56 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:22:19 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:22:19 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:22:19 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:22:19 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:31:23 --> Query error: Unknown column 'task_progress' in 'field list' - Invalid query: UPDATE `tm_tasks` SET `outcome_generated` = '', `problems_faced` = '', `learning` = '', `time_duration` = '', `status` = '2', `actual_start_date` = '2021-07-13', `actual_end_date` = '2021-07-13', `task_progress` = 'A PHP Error was encountered Severity: Notice Message: Undefined property: stdClass::$task_progress Filename: taskinbox/edit.php Line Number: 278 Backtrace: File: /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php Line: 278 Function: _error_handler File: /home/bdi8onyxofri/public_html/application/controllers/Taskinbox.php Line: 120 Function: view File: /home/bdi8onyxofri/public_html/index.php Line: 315 Function: require_once value=\"1\">25%'
+WHERE md5(createtask_id) = '5878a7ab84fb43402106c575658472fa'
+AND `user_id` = '42'
+ERROR - 2021-07-20 19:31:38 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:31:38 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:31:38 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:31:38 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:31:53 --> Query error: Unknown column 'task_progress' in 'field list' - Invalid query: UPDATE `tm_tasks` SET `outcome_generated` = '', `problems_faced` = '', `learning` = '', `time_duration` = '', `status` = '1', `actual_start_date` = '2021-07-13', `actual_end_date` = '2021-07-13', `task_progress` = 'A PHP Error was encountered Severity: Notice Message: Undefined property: stdClass::$task_progress Filename: taskinbox/edit.php Line Number: 278 Backtrace: File: /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php Line: 278 Function: _error_handler File: /home/bdi8onyxofri/public_html/application/controllers/Taskinbox.php Line: 120 Function: view File: /home/bdi8onyxofri/public_html/index.php Line: 315 Function: require_once value=\"1\">25%'
+WHERE md5(createtask_id) = '5878a7ab84fb43402106c575658472fa'
+AND `user_id` = '42'
+ERROR - 2021-07-20 19:32:32 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:32:32 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:32:32 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:32:32 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:33:37 --> Severity: Notice --> Undefined property: stdClass::$picture /home/bdi8onyxofri/public_html/application/controllers/Welcome.php 47
+ERROR - 2021-07-20 19:33:47 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:33:47 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:33:47 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:33:47 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:33:57 --> Query error: Unknown column 'task_progress' in 'field list' - Invalid query: UPDATE `tm_tasks` SET `outcome_generated` = '', `problems_faced` = '', `learning` = '', `time_duration` = '', `status` = '2', `actual_start_date` = '2021-07-20', `actual_end_date` = '2021-07-20', `task_progress` = 'A PHP Error was encountered Severity: Notice Message: Undefined property: stdClass::$task_progress Filename: taskinbox/edit.php Line Number: 278 Backtrace: File: /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php Line: 278 Function: _error_handler File: /home/bdi8onyxofri/public_html/application/controllers/Taskinbox.php Line: 120 Function: view File: /home/bdi8onyxofri/public_html/index.php Line: 315 Function: require_once value=\"1\">25%'
+WHERE md5(createtask_id) = '839ab46820b524afda05122893c2fe8e'
+AND `user_id` = '42'
+ERROR - 2021-07-20 19:34:04 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:34:04 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:34:04 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:34:04 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:35:50 --> Query error: Unknown column 'task_progress' in 'field list' - Invalid query: UPDATE `tm_tasks` SET `outcome_generated` = '', `problems_faced` = '', `learning` = '', `time_duration` = '', `status` = '2', `actual_start_date` = '2021-07-20', `actual_end_date` = '2021-07-20', `task_progress` = 'A PHP Error was encountered Severity: Notice Message: Undefined property: stdClass::$task_progress Filename: taskinbox/edit.php Line Number: 278 Backtrace: File: /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php Line: 278 Function: _error_handler File: /home/bdi8onyxofri/public_html/application/controllers/Taskinbox.php Line: 120 Function: view File: /home/bdi8onyxofri/public_html/index.php Line: 315 Function: require_once value=\"1\">25%'
+WHERE md5(createtask_id) = '839ab46820b524afda05122893c2fe8e'
+AND `user_id` = '42'
+ERROR - 2021-07-20 19:35:58 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:35:58 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:35:58 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:35:58 --> Severity: Notice --> Undefined property: stdClass::$task_progress /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php 278
+ERROR - 2021-07-20 19:36:16 --> Query error: Unknown column 'task_progress' in 'field list' - Invalid query: UPDATE `tm_tasks` SET `outcome_generated` = '', `problems_faced` = '', `learning` = '', `time_duration` = '', `status` = '2', `actual_start_date` = '2021-07-20', `actual_end_date` = '2021-07-20', `task_progress` = 'A PHP Error was encountered Severity: Notice Message: Undefined property: stdClass::$task_progress Filename: taskinbox/edit.php Line Number: 278 Backtrace: File: /home/bdi8onyxofri/public_html/application/views/taskinbox/edit.php Line: 278 Function: _error_handler File: /home/bdi8onyxofri/public_html/application/controllers/Taskinbox.php Line: 120 Function: view File: /home/bdi8onyxofri/public_html/index.php Line: 315 Function: require_once value=\"1\">25%'
+WHERE md5(createtask_id) = '839ab46820b524afda05122893c2fe8e'
+AND `user_id` = '42'
+ERROR - 2021-07-20 20:42:56 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-20 20:42:56 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-20 20:42:57 --> 404 Page Not Found: Adstxt/index
+ERROR - 2021-07-20 20:42:57 --> 404 Page Not Found: Adstxt/index
+ERROR - 2021-07-20 20:50:30 --> 404 Page Not Found: Faviconico/index
+ERROR - 2021-07-20 23:15:49 --> 404 Page Not Found: Faviconico/index

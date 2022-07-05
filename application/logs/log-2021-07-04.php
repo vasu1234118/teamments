@@ -1,4 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-ERROR - 2021-07-04 22:44:55 --> Severity: error --> Exception: syntax error, unexpected '$this' (T_VARIABLE), expecting function (T_FUNCTION) or const (T_CONST) D:\xampp\htdocs\project\task\application\controllers\Assignedtasks.php 621
-ERROR - 2021-07-04 22:46:44 --> Severity: error --> Exception: syntax error, unexpected '$this' (T_VARIABLE) D:\xampp\htdocs\project\task\application\controllers\Assignedtasks.php 615
+ERROR - 2021-07-04 03:08:57 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-04 06:11:12 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-04 06:11:22 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-04 06:11:28 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-04 06:11:29 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-04 18:46:28 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-04 20:11:18 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-04 20:11:18 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-04 20:11:20 --> 404 Page Not Found: Adstxt/index
+ERROR - 2021-07-04 20:11:21 --> 404 Page Not Found: Adstxt/index

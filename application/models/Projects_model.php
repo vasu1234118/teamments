@@ -58,7 +58,7 @@ class Projects_model extends CI_Model{
 	}
 
 	function allAssignedUsers($level,$uid){
-		$this->db->select("u.id,u.display_name,r.title as role_name");
+		$this->db->select("u.id,u.display_name,u.etype,r.title as role_name");
 		$this->db->from($this->users_tbl.' u');
 		if($level>=5)
 			$this->db->where('u.id='.$uid);

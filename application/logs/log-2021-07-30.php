@@ -1,13 +1,26 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-ERROR - 2021-07-30 03:05:22 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-30 11:57:15 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-30 11:59:06 --> Severity: Notice --> Undefined property: stdClass::$requrements D:\xampp\htdocs\project\task\application\views\projects\edit.php 72
-ERROR - 2021-07-30 08:29:33 --> Severity: error --> Exception: syntax error, unexpected 'if' (T_IF) D:\xampp\htdocs\project\task\application\controllers\Assignedtasks.php 130
-ERROR - 2021-07-30 08:29:57 --> Severity: error --> Exception: syntax error, unexpected 'if' (T_IF) D:\xampp\htdocs\project\task\application\controllers\Assignedtasks.php 130
-ERROR - 2021-07-30 08:29:59 --> Severity: error --> Exception: syntax error, unexpected 'if' (T_IF) D:\xampp\htdocs\project\task\application\controllers\Assignedtasks.php 130
-ERROR - 2021-07-30 08:30:00 --> Severity: error --> Exception: syntax error, unexpected 'if' (T_IF) D:\xampp\htdocs\project\task\application\controllers\Assignedtasks.php 130
-ERROR - 2021-07-30 12:12:55 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-30 12:13:39 --> Severity: Notice --> Undefined property: stdClass::$requrements D:\xampp\htdocs\project\task\application\views\projects\edit.php 72
-ERROR - 2021-07-30 12:20:01 --> Severity: Warning --> mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() D:\xampp\htdocs\project\task\system\libraries\Email.php 1902
-ERROR - 2021-07-30 12:20:34 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
+ERROR - 2021-07-30 09:37:50 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-30 09:37:51 --> 404 Page Not Found: Humanstxt/index
+ERROR - 2021-07-30 09:37:51 --> 404 Page Not Found: Adstxt/index
+ERROR - 2021-07-30 12:44:20 --> 404 Page Not Found: Faviconico/index
+ERROR - 2021-07-30 16:26:22 --> 404 Page Not Found: Faviconico/index
+ERROR - 2021-07-30 16:30:39 --> 404 Page Not Found: Faviconico/index
+ERROR - 2021-07-30 17:43:50 --> 404 Page Not Found: Wp-admin/install.php
+ERROR - 2021-07-30 17:43:57 --> 404 Page Not Found: Wp/wp-admin
+ERROR - 2021-07-30 17:44:08 --> 404 Page Not Found: New/wp-admin
+ERROR - 2021-07-30 17:44:17 --> 404 Page Not Found: Old/wp-admin
+ERROR - 2021-07-30 17:44:23 --> 404 Page Not Found: Wordpress/wp-admin
+ERROR - 2021-07-30 17:44:31 --> 404 Page Not Found: Test/wp-admin
+ERROR - 2021-07-30 17:44:39 --> 404 Page Not Found: Blog/wp-admin
+ERROR - 2021-07-30 17:44:45 --> 404 Page Not Found: Cms/wp-admin
+ERROR - 2021-07-30 17:44:50 --> 404 Page Not Found: Web/wp-admin
+ERROR - 2021-07-30 17:44:56 --> 404 Page Not Found: Backup/wp-admin
+ERROR - 2021-07-30 17:45:02 --> 404 Page Not Found: Site/wp-admin
+ERROR - 2021-07-30 17:45:07 --> 404 Page Not Found: Oldsite/wp-admin
+ERROR - 2021-07-30 20:20:09 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-30 20:21:11 --> 404 Page Not Found: Adstxt/index
+ERROR - 2021-07-30 20:50:19 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-30 20:51:37 --> 404 Page Not Found: Adstxt/index
+ERROR - 2021-07-30 23:18:37 --> 404 Page Not Found: Faviconico/index
+ERROR - 2021-07-30 23:56:40 --> 404 Page Not Found: Robotstxt/index

@@ -21,7 +21,51 @@
       <?php } ?>
     </div>
     <?php } ?>
-    
+
+    <script type="text/javascript">
+  function leavelmanagement()
+  {
+   /////alert('hi');
+  var dt= document.getElementById("reservation").value;
+const words = dt.split(' ');
+//alert(words[0]);
+//alert(words[2]);
+ //alert(dt);
+ const date1 = new Date(words[0]);
+const date2 = new Date(words[2]);
+const diffTime = Math.abs(date2 - date1);
+const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+console.log(diffTime + " milliseconds");
+console.log(diffDays + " days");
+//alert(diffDays);
+var d=diffDays-0.5;
+//alert(d);
+var lstime=document.getElementById("lstime").value;
+var letime=document.getElementById("letime").value;
+if(words[0]==words[2]){
+if(lstime==letime){
+  var d=0.5
+  document.getElementById("ldays").value=d;
+
+}else  if(lstime!=letime){
+  var d=1
+ document.getElementById("ldays").value=d;
+}
+}else if(words[0]!=words[2]){
+  if(lstime==letime){
+    var d=diffDays+1-0.5;
+     document.getElementById("ldays").value=d;
+  }
+  if(lstime!=letime){
+  var d=diffDays+1;
+ document.getElementById("ldays").value=d;
+}
+  }
+}
+</script>
+
+ <?php @$vochersd=$this->db->limit('1')->order_by('id','desc')->get_where('tm_leaves')->row();  @$revo=$vochersd->lid+1; 
+    ?>
     <form method="post" action="" id="ART_FORM" enctype="multipart/form-data">
 
       <!-- SELECT2 EXAMPLE -->
@@ -33,7 +77,7 @@
         <div class="box-body">
           <div class="box-body">
           <div class="row">
-            
+             <input name="lid" type="hidden" class="form-control validate[required]" placeholder="" id="lid" value="<?php echo $revo  ?>" >
             <div class="col-md-6">
               <div class="form-group">
                 <label>Subject <span class="text-danger">*</span></label>
@@ -54,6 +98,72 @@
                 <!-- /.input group -->
               </div>
             </div>
+            <div class="col-md-6">
+               <div class="form-group">
+                 <label>Leave Start Time <span class="text-danger"></span></label>
+                 <select class="form-control validate[required] " name="lstime" id="lstime" on>
+                  <option value="">Select Leave Start Time</option>
+                   <option value="firsthalf">First Half</option>
+                    <option value="secondhalf">Second Half</option>
+                     
+                       </select>
+                 
+               </div>
+           </div>
+            
+            <div class="col-md-6">
+               <div class="form-group">
+                 <label>Leave End Time <span class="text-danger"></span></label>
+                 <select class="form-control validate[required] " name="letime" id="letime" onchange="leavelmanagement()">
+                  <option value="">Select Leave End Time</option>
+                   <option value="firsthalf">First Half</option>
+                    <option value="secondhalf">Second Half</option>
+                     
+                       </select>
+                 
+               </div>
+           </div>
+
+           
+
+              <div class="col-md-6">
+               <div class="form-group">
+                 <label>Leave Days <span class="text-danger"></span></label>
+                
+                        <input name="ldays" type="text" class="form-control validate[required]" placeholder="Leave Days" id="ldays" readonly="readonly">
+                 
+               </div>
+           </div>
+
+            <div class="col-md-6">
+               <div class="form-group">
+                 <label>Leave Type <span class="text-danger"></span></label>
+                 <select class="form-control validate[required] " name="lreason" id="leave_reason">
+                   <option value="">Select Leave Reasons</option>
+                    <option value="1">Special Leave </option>
+                     <option value="2">Sick Leave</option>
+                      <option value="3">Casual leave</option>
+                       </select>
+                 
+               </div>
+           </div>
+          
+            <div class="col-md-12">
+                <div class="form-group">
+                  <?php $proadmin_data = $this->session->userdata('proadmin_data');
+   $admin_id = $proadmin_data['TM_ID']; $user=$this->db->get_where('users', array('id'=>$admin_id))->row();  ?>
+                  <label>supervisorwise <span class="text-danger">*</span></label>
+                  <select class="form-control select2" multiple="multiple" data-placeholder="Select The Employee"
+                      style="width: 100%;" name="assigned_to[]" id="taskpr" required="required">
+                    <option value="">Select Employee</option>
+                     <?php  $pr=$this->db->get_where('users', array('id !='=>$admin_id))->result(); echo $this->db->last_query(); foreach($pr as $pr2){  ?>
+                        <option value="<?php echo $pr2->id; ?>"><?php echo $pr2->fname; ?><?php echo $pr2->lname; ?></option>
+                        <?php } ?>
+                  </select>
+                </div>
+            </div> 
+          
+
            
             <!-- <div class="col-md-3">
               <div class="form-group">

@@ -1,73 +1,27 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-ERROR - 2021-07-23 00:07:40 --> Query error: Column 'status' in where clause is ambiguous - Invalid query: SELECT `ct`.*, `t`.`display`, `t`.`createtask_id`, `u`.`display_name`, `c`.`title` as `complexity_name`, `p`.`title` as `priority_name`, `s`.`title` as `status_name`
-FROM `tm_createtasks` `ct`
-JOIN `tm_complexity` `c` ON `ct`.`complexity` = `c`.`id`
-JOIN `tm_priority` `p` ON `ct`.`priority` = `p`.`id`
-JOIN `tm_users` `u` ON `ct`.`created_by` = `u`.`id`
-JOIN `tm_tasks` `t` ON `t`.`createtask_id`=`ct`.`id`
-JOIN `tm_status` `s` ON `t`.`status` = `s`.`id`
-WHERE `user_id` = '55'
-AND `status` = '3'
-ORDER BY `id` DESC
-ERROR - 2021-07-23 00:10:31 --> Query error: Column 'status' in where clause is ambiguous - Invalid query: SELECT `ct`.*, `t`.`display`, `t`.`createtask_id`, `u`.`display_name`, `c`.`title` as `complexity_name`, `p`.`title` as `priority_name`, `s`.`title` as `status_name`
-FROM `tm_createtasks` `ct`
-JOIN `tm_complexity` `c` ON `ct`.`complexity` = `c`.`id`
-JOIN `tm_priority` `p` ON `ct`.`priority` = `p`.`id`
-JOIN `tm_users` `u` ON `ct`.`created_by` = `u`.`id`
-RIGHT JOIN `tm_tasks` `t` ON `t`.`createtask_id`=`ct`.`id`
-JOIN `tm_status` `s` ON `t`.`status` = `s`.`id`
-WHERE `user_id` = '55'
-AND `status` = '5'
-ORDER BY `id` DESC
-ERROR - 2021-07-23 00:12:03 --> Query error: Column 'status' in where clause is ambiguous - Invalid query: SELECT `ct`.*, `t`.`display`, `t`.`createtask_id`, `u`.`display_name`, `c`.`title` as `complexity_name`, `p`.`title` as `priority_name`, `s`.`title` as `status_name`
-FROM `tm_createtasks` `ct`
-JOIN `tm_complexity` `c` ON `ct`.`complexity` = `c`.`id`
-JOIN `tm_priority` `p` ON `ct`.`priority` = `p`.`id`
-JOIN `tm_users` `u` ON `ct`.`created_by` = `u`.`id`
-JOIN `tm_tasks` `t` ON `t`.`createtask_id`=`ct`.`id`
-JOIN `tm_status` `s` ON `t`.`status` = `s`.`id`
-WHERE `user_id` = '55'
-AND `status` = '5'
-ORDER BY `id` DESC
-ERROR - 2021-07-23 00:12:11 --> Query error: Column 'status' in where clause is ambiguous - Invalid query: SELECT `ct`.*, `t`.`display`, `t`.`createtask_id`, `u`.`display_name`, `c`.`title` as `complexity_name`, `p`.`title` as `priority_name`, `s`.`title` as `status_name`
-FROM `tm_createtasks` `ct`
-JOIN `tm_complexity` `c` ON `ct`.`complexity` = `c`.`id`
-JOIN `tm_priority` `p` ON `ct`.`priority` = `p`.`id`
-JOIN `tm_users` `u` ON `ct`.`created_by` = `u`.`id`
-JOIN `tm_tasks` `t` ON `t`.`createtask_id`=`ct`.`id`
-JOIN `tm_status` `s` ON `t`.`status` = `s`.`id`
-WHERE `user_id` = '55'
-AND `status` = '3'
-ORDER BY `id` DESC
-ERROR - 2021-07-23 05:03:12 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-23 05:04:29 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-23 05:16:22 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-23 05:18:44 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-23 05:19:47 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-23 05:22:10 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-23 01:55:27 --> Severity: error --> Exception: syntax error, unexpected 'if' (T_IF) D:\xampp\htdocs\project\task\application\controllers\Search.php 62
-ERROR - 2021-07-23 05:32:47 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-23 05:34:35 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-23 05:38:12 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-23 05:44:35 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-23 05:46:13 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-23 05:46:53 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-23 05:48:42 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-23 07:32:34 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-23 08:21:59 --> Severity: Warning --> Invalid argument supplied for foreach() D:\xampp\htdocs\project\task\application\controllers\Taskinbox.php 90
-ERROR - 2021-07-23 10:43:19 --> Severity: Notice --> Undefined property: stdClass::$picture D:\xampp\htdocs\project\task\application\controllers\Welcome.php 47
-ERROR - 2021-07-23 11:13:31 --> Severity: Notice --> Undefined property: stdClass::$project_name D:\xampp\htdocs\project\task\application\views\ideas\view.php 52
-ERROR - 2021-07-23 11:13:31 --> Severity: Notice --> Undefined property: stdClass::$project_name D:\xampp\htdocs\project\task\application\views\ideas\view.php 52
-ERROR - 2021-07-23 11:13:31 --> Severity: Notice --> Undefined property: stdClass::$project_name D:\xampp\htdocs\project\task\application\views\ideas\view.php 52
-ERROR - 2021-07-23 11:13:31 --> Severity: Notice --> Undefined property: stdClass::$project_name D:\xampp\htdocs\project\task\application\views\ideas\view.php 52
-ERROR - 2021-07-23 11:13:31 --> Severity: Notice --> Undefined property: stdClass::$project_name D:\xampp\htdocs\project\task\application\views\ideas\view.php 52
-ERROR - 2021-07-23 11:13:31 --> Severity: Notice --> Undefined property: stdClass::$project_name D:\xampp\htdocs\project\task\application\views\ideas\view.php 52
-ERROR - 2021-07-23 11:13:31 --> Severity: Notice --> Undefined property: stdClass::$project_name D:\xampp\htdocs\project\task\application\views\ideas\view.php 52
-ERROR - 2021-07-23 11:13:31 --> Severity: Notice --> Undefined property: stdClass::$project_name D:\xampp\htdocs\project\task\application\views\ideas\view.php 52
-ERROR - 2021-07-23 11:13:31 --> Severity: Notice --> Undefined property: stdClass::$project_name D:\xampp\htdocs\project\task\application\views\ideas\view.php 52
-ERROR - 2021-07-23 11:13:31 --> Severity: Notice --> Undefined property: stdClass::$project_name D:\xampp\htdocs\project\task\application\views\ideas\view.php 52
-ERROR - 2021-07-23 11:13:31 --> Severity: Notice --> Undefined property: stdClass::$project_name D:\xampp\htdocs\project\task\application\views\ideas\view.php 52
-ERROR - 2021-07-23 11:13:31 --> Severity: Notice --> Undefined property: stdClass::$project_name D:\xampp\htdocs\project\task\application\views\ideas\view.php 52
-ERROR - 2021-07-23 11:13:31 --> Severity: Notice --> Undefined property: stdClass::$project_name D:\xampp\htdocs\project\task\application\views\ideas\view.php 52
-ERROR - 2021-07-23 11:13:31 --> Severity: Notice --> Undefined property: stdClass::$project_name D:\xampp\htdocs\project\task\application\views\ideas\view.php 52
+ERROR - 2021-07-23 00:43:27 --> Severity: Notice --> Undefined property: stdClass::$picture /home/bdi8onyxofri/public_html/application/controllers/Welcome.php 47
+ERROR - 2021-07-23 04:14:26 --> 404 Page Not Found: Wp-admin/install.php
+ERROR - 2021-07-23 04:14:33 --> 404 Page Not Found: Wp/wp-admin
+ERROR - 2021-07-23 04:14:39 --> 404 Page Not Found: New/wp-admin
+ERROR - 2021-07-23 04:14:46 --> 404 Page Not Found: Old/wp-admin
+ERROR - 2021-07-23 04:14:55 --> 404 Page Not Found: Wordpress/wp-admin
+ERROR - 2021-07-23 04:15:06 --> 404 Page Not Found: Test/wp-admin
+ERROR - 2021-07-23 04:15:14 --> 404 Page Not Found: Blog/wp-admin
+ERROR - 2021-07-23 04:15:24 --> 404 Page Not Found: Cms/wp-admin
+ERROR - 2021-07-23 04:15:32 --> 404 Page Not Found: Web/wp-admin
+ERROR - 2021-07-23 04:15:41 --> 404 Page Not Found: Backup/wp-admin
+ERROR - 2021-07-23 04:15:54 --> 404 Page Not Found: Site/wp-admin
+ERROR - 2021-07-23 04:16:01 --> 404 Page Not Found: Oldsite/wp-admin
+ERROR - 2021-07-23 05:31:00 --> 404 Page Not Found: Faviconico/index
+ERROR - 2021-07-23 11:01:12 --> Severity: Notice --> Undefined property: stdClass::$picture /home/bdi8onyxofri/public_html/application/controllers/Welcome.php 47
+ERROR - 2021-07-23 13:35:45 --> Severity: Notice --> Undefined property: stdClass::$picture /home/bdi8onyxofri/public_html/application/controllers/Welcome.php 47
+ERROR - 2021-07-23 09:06:04 --> 404 Page Not Found: Faviconico/index
+ERROR - 2021-07-23 14:38:08 --> Severity: Notice --> Undefined property: stdClass::$picture /home/bdi8onyxofri/public_html/application/controllers/Welcome.php 47
+ERROR - 2021-07-23 14:41:18 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at /home/bdi8onyxofri/public_html/application/models/Tasks_model.php:43) /home/bdi8onyxofri/public_html/system/helpers/url_helper.php 564
+ERROR - 2021-07-23 11:11:52 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-23 20:15:26 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-23 20:15:26 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2021-07-23 20:15:27 --> 404 Page Not Found: Adstxt/index
+ERROR - 2021-07-23 20:15:27 --> 404 Page Not Found: Adstxt/index
+ERROR - 2021-07-23 23:23:46 --> 404 Page Not Found: Faviconico/index

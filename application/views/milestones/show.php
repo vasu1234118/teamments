@@ -5,7 +5,7 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Edit <?php echo $add_title; ?></h1>
+      <h1>View <?php echo $add_title; ?></h1>
       <ol class="breadcrumb">
         <li>Note: <span class="text-danger">'*'</span> mark fields are mandatory.</li>
       </ol>

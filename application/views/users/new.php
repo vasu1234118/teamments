@@ -27,7 +27,7 @@
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-default">
         <div class="box-header with-border">
-          <h3 class="box-title"><?php echo $add_title; ?> Login Info</h3>
+          <!--<h3 class="box-title"><?php echo $add_title; ?> Login Info</h3>-->
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -55,7 +55,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
                 <label>Role <span class="text-danger">*</span></label>
                 <div class="input-group">
@@ -72,7 +72,7 @@
               </div>
             </div>
             <!-- /.col -->
-            <div class="col-md-6">  
+            <div class="col-md-4" style="float:right" >  
                 <div class="form-group">
                     <label>Status</label><br />
                 <label>
@@ -81,6 +81,19 @@
                     </label>
                 </div>
             </div>
+            <div class="col-md-4" >  
+                <div class="form-group">
+                    <label>Employee Type</label><br />
+                 <select class="form-control" name="etype">
+                    <option value="">Select Employee Type</option>
+                   
+                    <option value="1">Internal</option>
+                     <option value="2">External</option>
+                
+                  </select>
+                </div>
+            </div>
+            
           </div>
         </div>
       </div>
@@ -182,7 +195,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>Date Of Join</label>
+                <label>Date of Joining</label>
                 <div class="input-group">
                   <div class="input-group-addon">
                     <i class="fa fa-user-o"></i>
@@ -193,7 +206,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>Date Of Leaveing</label>
+                <label>Date of Leaving</label>
                 <div class="input-group">
                   <div class="input-group-addon">
                     <i class="fa fa-user-o"></i>
@@ -268,7 +281,7 @@
       </div>
       <!-- /.row -->
       
-      <div class="text-center"><a href="<?php echo site_url($pagename); ?>" class="btn btn-default btn-md" name="submit">Cancle</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary btn-md" name="submit" value="Submit" /></div>
+      <div class="text-center"><a href="<?php echo site_url($pagename); ?>" class="btn btn-default btn-md" name="submit">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary btn-md" name="submit" value="Submit" /></div>
       
     </form>
     </section>

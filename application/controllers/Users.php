@@ -44,13 +44,47 @@ class Users extends CI_Controller {
 			$record_data=array();
 			foreach($_POST as $key => $value){
 				$$key=$value;
+				
 				if($key=='password')
 					$record_data[$key]=base64_encode($value);
 				else if($key!='submit')
 					$record_data[$key]=$value;
 			}
 			$record_data['created_by']=$this->data['ADMIN_ID'];
+			
 			$this->common->saveTable($this->table, $record_data);
+         if(isset($_POST['submit'])){
+			  $msg = array(
+	         'name'=>$this->input->post('fname').''.$this->input->post('lname'),
+             'gender'=>$this->input->post('gender'),
+             'technology'=>$this->input->post('technology'),
+             'doj'=>$this->input->post('doj'),
+             'email'=>$this->input->post('email'),
+              'username'=>$this->input->post('username'),
+               'password'=>$this->input->post('password'),
+			
+
+			
+		
+        );
+                   
+                    $message = $message = $this->load->view('useremail',$msg,TRUE);
+                                    	
+                                $subject.="Task Id";
+                                $config = array(  'mailtype'  => 'html', 'charset'   => 'iso-8859-1' );
+                                $this->load->library('email'); 
+                                $this->email->initialize( $config);
+                                $this->email->from('info@dqci.in', $admin);
+                                $this->email->to($this->input->post('email'));
+                                //$this->email->cc($email_cc);
+                               //$this->email->cc('vasu.svrao@gmail.com');
+                                //$this->email->subject($subject. taskId($Events));
+                               $this->email->subject("Details of New User Created"); 
+                                $this->email->message($message);
+
+                       $this->email->send();
+                             }  
+			
 			$this->session->set_flashdata('message','New '.$this->add_title.' Added <strong>Successfully</strong>.');
 			redirect(site_url($this->pagename));
 		}

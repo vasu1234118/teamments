@@ -30,7 +30,7 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <table id="referral_table" class="display responsive nowrap" cellspacing="0" width="100%">
+              <table id="referral_table1" class="display responsive nowrap" cellspacing="0" width="100%">
                   <thead>
                         <tr>
                             <th style="width: 1%;">S.no</th>

@@ -47,7 +47,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                   <label>Project <span class="text-danger">*</span></label>
-                   <select onchange="onProjectChange1(this.value),milestone(this.value), assignproject(this.value) "  class="form-control validate[required]" name="project_id" id="project_id">
+                  <select onchange="onProjectChange1(this.value),milestone(this.value),advanced()"  class="form-control validate[required]" name="project_id" id="project_id">
                     <option value="">Select Project</option>
                     <?php foreach($project as $row){ ?>
                     <option value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>
@@ -138,106 +138,37 @@
               </div>
             </div>
 
-           <div class="col-md-6">
-              <div class="form-group">
-                <label>Status <span class="text-danger">*</span></label>
-                <?php   $mi= $this->db->get_where('status')->result();   ?>
-                <select name="status" class="form-control" onchange="onProjectChange2(this.value)" id="status_id">
-                   <option value="">Select Status</option>
-                  <?php foreach($mi as $row){ ?>
-                  <option value="<?php echo $row->id; ?>"><?php echo $row->title; ?></option>
-                  <?php } ?>
-                </select>
-              </div>
-            </div>
-            <script type="text/javascript">
-  function onProjectChange2(value)
+            <!-- <script type="text/javascript">
+  function advanced(value)
   {
-   //alert('hi');
-    $.ajax({
-        url:"<?php echo base_url();?>taskinbox/getrequirement/"+value,
-        method:"GET",
-        success: function(data) {
-         //alert(data);
-    $("#sub_status_id").html(data);
-   
-      },
-      error: function(err) {
-       console.log(err);
-      }
-    })
+   var data={};
+   data.project_id=$('#project_id').val();
+data.requirement_id=$('#requirement_id').val();
+data.milestone_id=$('#milestone_id').val();
+data.complexity=$('#complexity').val();
+data.priority=$('#priority').val();
+//
+alert(data.complexity);
+$.post("<?php echo base_url('filter') ?>",{data:data}, function(data, status){
+ 
+        if(data){
+        //alert(data);
+         $("#result").html(data);
+
+        }else{
+          //alert("something went wrong");
+        }
+    });
 
   }
-</script>
-<div class="col-md-6">
-               <div class="form-group">
-                 
-                  <label>Sub Status <span class="text-danger">*</span></label>
-                  <select class="form-control validate[required]" name="sub_status" id="sub_status_id">
-                    
-                 </select>
-               </div>
-           </div>
-
+</script> -->
            
             
             
-<div class="col-md-12">
 
-              <div class="form-group">
-                <label>Assigned To <span class="text-danger">*</span></label>
-                
-                <div id="select23">
-                <select class="form-control select2"  data-placeholder="Select a User"
-                      name="assigned_to" id="assigned_to">
-                 
-                  <option value="">--Select Assigned--</option>
-                 
-                </select>
-                </div>
-
-              </div>
-<script type="text/javascript">
-  function assignproject(value)
-  {
-   
-    $.ajax({
-        url:"<?php echo base_url();?>assignedtasks/getproject/"+value,
-        method:"GET",
-        success: function(data) {
-         
-    $("#assigned_to").html(data);
-   
-      },
-      error: function(err) {
-       console.log(err);
-      }
-    })
-
-  }
-</script>
-
-            </div>
             
             
-            <div class="col-md-3">
-              <div class="form-group">
-                <label>To Start Date<span class="text-danger">*</span></label>
-                <div  class="input-group date new_dates" data-date-format="dd-mm-yyyy">
-                <input type="text"   name="started_on" id="started_on" class="form-control validate[required]" readonly/>
-                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label>Expected End Date<span class="text-danger">*</span></label>
-                <div  class="input-group date new_dates" data-date-format="dd-mm-yyyy">
-                <input type="text"   name="estimated_ended_on" id="estimated_ended_on" class="form-control validate[required]" readonly/>
-                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                </div>
-              </div>
-            </div>
+            
            
            
 
@@ -252,7 +183,7 @@
       </div>
       <!-- /.row -->
       
-    <div class="text-center"><input type="submit" class="btn btn-primary btn-md" name="submit" value="Submit" />&nbsp;&nbsp;&nbsp;&nbsp;<!-- <button type="submit" class="btn btn-warning btn-md" name="save">Save</button> --></div>
+    <div class="text-center"><a href="<?php echo site_url($pagename); ?>" class="btn btn-default btn-md" name="submit">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary btn-md" name="submit" value="Submit" />&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-warning btn-md" name="save">Save</button></div>
       
     </form>
     </section>
@@ -287,8 +218,7 @@
           </div>
         </div>
         <!-- /.box-header -->
-        <?php $admin= $this->data['ADMIN_ID']; if($admin=='20'){ ?>
-                <div class="box-body" id="result">
+        <div class="box-body" id="result">
         <div class="row">
             <div class="col-md-12">
               <table id="referral_table" class="display responsive nowrap" cellspacing="0" width="100%">
@@ -321,7 +251,7 @@ $priority=$_POST['priority'];
 $admin= $this->data['ADMIN_ID'];
 if($admin){
   //echo "tpeschool";
-$this->db->where('created_by',$admin);
+$this->db->where_in('assigned_to',$admin);
 
 }
 if($project_id){
@@ -485,131 +415,9 @@ $res=$this->db->get('createtasks')->result();
           </div> 
 
         </div>
-      <?php } else { ?> 
-        <div class="box-body" id="result">
-        <div class="row">
-            <div class="col-md-12">
-              <table id="referral_table" class="display responsive nowrap" cellspacing="0" width="100%">
-                 <thead>
-                        <tr>
-                            <th style="width: 1%;">S.no</th>
-                            <th style="width: 1%;">Task-ID</th>
-                            <th style="width: 47%;">Task Name</th>
-                            <th style="width: 8%;">Assigned by</th>
-                            <th style="width: 8%;">Prority</th>
-                            <th style="width: 8%;">Complexity</th>
-                            <th style="width: 8%;">Status</th>
-                            <th style="width: 9%;">Started On</th>
-                            <th style="width: 9%;">End Date</th>
-                            <th style="width: 10%;">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      <?php if(isset($_POST['submit'])) { $project_id=$_POST['project_id'];
-$requirement_id=$_POST['requirement_id'];
-$milestone_id=$_POST['milestone_id'];
-$complexity=$_POST['complexity'];
-$priority=$_POST['priority'];
-$status=$_POST['status'];
-$sub_status=$_POST['sub_status'];
-
-
-if($admin=='20'){
-  }else {
-if($admin){
- $this->db->where('user_id',$admin);
-
-}
-}
-if($project_id){
-  //echo "tpeschool";
-$this->db->where('project_id',$project_id);
-
-}
-if($status){
-$s1=$status;
-
-}
-if($status){
-$sub=$sub_status;
-
-}
-if($requirement_id){
-  //echo "tpeschool";
-$this->db->where('requirement_id',$requirement_id);
-
-}
-if($milestone_id){
-  //echo "tpeschool";
-$this->db->where('milestone_id',$milestone_id);
-
-}
-if($complexity){
-  //echo "tpeschool";
-$this->db->where('complexity',$complexity);
-
-}
-if($priority){
-  //echo "tpeschool";
-$this->db->where('priority',$priority);
-
-}
-
-
-
-
-
-
-/*$res=$this->db->get('createtasks')->result();*/
-$this->db->select('ct.*,t.display, t.createtask_id,u.display_name, c.title as complexity_name, p.title as priority_name,s.title as status_name'); 
-    $this->db->from('createtasks'.' ct');
-   
-  $this->db->join('complexity'.' c', 'ct.complexity = c.id');
-    $this->db->join('priority'.' p', 'ct.priority = p.id');
-    $this->db->join('users'.' u', 'ct.created_by = u.id');
-
-    $this->db->join('tasks'.' t', ' t.createtask_id=ct.id');
-    if($status){
-    $this->db->where('t.status', $status);
-  }
-  if($sub_status){
-    $this->db->where('t.sub_status', $sub);
-  }
-$this->db->join('status'.' s', 't.status = s.id');
-    $this->db->order_by('id','DESC');
-    
-    $records =$this->db->get()->result();
-echo $this->db->last_query();
-
-
-
-
-                     $index=1; foreach($records as $row){ ?>
-                        <tr <?php if($row->display=='N'){ echo 'class="at_bold"'; } ?>>
-                          <td><?php echo $index; ?></td>
-                          <td><?php echo taskId($row->createtask_id); ?></td>
-                          <td><?php echo $row->name; ?></td>
-                          <td><?php echo $row->display_name; ?></td>
-                          <td><?php echo $row->priority_name; ?></td>
-                          <td><?php echo $row->complexity_name; ?></td>
-                          <td><?php echo $row->status_name; ?></td>
-                          <td><?php echo date('d-m-Y',strtotime($row->started_on)); ?></td>
-                          <td><?php echo date('d-m-Y',strtotime($row->estimated_ended_on)); ?></td>
-                          <td><a href="<?php echo site_url($pagename.'/edit/'.md5($row->id)); ?>"><i class="fa fa-eye"></i> View</a></td>
-                        </tr>
-                        <?php $index++;} } ?>
-                    </tbody>
-                </table>
-                
-            </div>
-          </div> 
-
-        </div>
-      <?php } ?>
      </div>
     </section>
   </div>
-
 <?php $this->load->view('include/footer.php'); ?>
 <!-- CK Editor -->
 <script src="<?php echo site_url('public/bower_components/ckeditor/ckeditor.js'); ?>"></script>
@@ -644,5 +452,9 @@ $(function () {
     CKEDITOR.replace('step_executed');
   })
 </script>
+<script>
 
+
+
+</script>
 

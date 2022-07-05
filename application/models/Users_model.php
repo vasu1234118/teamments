@@ -14,7 +14,18 @@ class Users_model extends CI_Model{
 		$this->db->from($this->users_tbl.' u');
 		$this->db->join($this->roles_tbl.' r', 'u.role = r.id and u.flag!=1');
 		$this->db->order_by('id','DESC');
-		
+			$this->db->where('status','1');
+		$query =$this->db->get();	
+	//	echo $this->db->last_Query();die;
+		return $query->result();
+	}
+	
+	function allinactive(){
+		$this->db->select('u.*,r.title as role_name');
+		$this->db->from($this->users_tbl.' u');
+		$this->db->join($this->roles_tbl.' r', 'u.role = r.id and u.flag!=1');
+		$this->db->order_by('id','DESC');
+			$this->db->where('status','0');
 		$query =$this->db->get();	
 	//	echo $this->db->last_Query();die;
 		return $query->result();

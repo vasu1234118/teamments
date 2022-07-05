@@ -51,10 +51,7 @@ class Learnings extends CI_Controller {
 	}
 	
 	public function add_new(){
-
 		if($this->input->post()){
-			print_r(($_FILES['attachments']));
-			exit();
 			$record_data=array();
 			foreach($_POST as $key => $value){
 				$$key=$value;
@@ -77,7 +74,6 @@ class Learnings extends CI_Controller {
 			$task_id=$this->common->saveTable($this->table, $record_data);
 			if($task_id){
 				// Attachment Upload
-				
 				if(isset($_FILES['attachments'])) {
 			        $path='./public/attachments/';
 					$title='';
@@ -91,8 +87,6 @@ class Learnings extends CI_Controller {
 					
 						$record_data=array('user_id'=>$this->data['ADMIN_ID'],'learning_id'=>$task_id,'file_name'=>$fname);
 						$this->common->saveTable($this->attachments_table, $record_data);
-						echo $this->db->last_query();
-						exit();
 						}
 					}
 				}
@@ -175,7 +169,7 @@ class Learnings extends CI_Controller {
 			// Attachment Upload
 			if($_FILES['attachments']['name'][0]) {
 		        $path='./public/attachments/';
-				$title=date('YmdHis');
+				$title='';
 				$files = $_FILES['attachments'];
 				$file_return=$this->learning->upload_files($path, $title, $files);
 
@@ -203,6 +197,7 @@ class Learnings extends CI_Controller {
 		}
 
 		$this->data['attachments']=$this->common->getAllRecords('id,file_name', $this->attachments_table, array('user_id'=>$this->data['ADMIN_ID'],'md5(learning_id)'=>$ctask_md5_id), array('id','DESC'), array($this->limit,0));
+	
 
 		$this->data['complexity']=$this->common->getAllRecords('id,title', $this->complexity_table, '', array('order','ASC'), array($this->limit,0));
 		$this->data['priority']=$this->common->getAllRecords('id,title', $this->priority_table, '', array('order','ASC'), array($this->limit,0));

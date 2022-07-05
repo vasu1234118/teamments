@@ -1,3 +1,4 @@
+
 <?php $this->load->view('include/header.php'); ?>
 <?php $this->load->view('include/left_nav.php'); ?>
 <style>
@@ -53,7 +54,6 @@
     </div>
     <?php } ?>
     <!-- SELECT2 EXAMPLE -->
- <!--  <?php   print_r($record_info); ?> -->
       <div class="box box-default">
         <!-- /.box-header -->
         <div class="box-body">
@@ -283,8 +283,9 @@
       </div>
       <!-- /.row -->
     
-    
+     
     <?php foreach($tasks_info as $task_info){ ?>
+    
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-default">
         <div class="box-header with-border">
@@ -370,7 +371,7 @@
 
     <div class="box box-default">
         <div class="box-header with-border">
-          <h3 class="box-title">Task Status</h3>
+          <h3 class="box-title">Task Audit Trail</h3>
         </div>
         <?php //print_r($taskstatus)?>
         <!-- /.box-header -->
@@ -383,66 +384,66 @@
 
              <div class="col-md-12">
              <div class="p-4">
-        <h3>Task Status</h3>
+      
     <table class="table table-bordered track_tbl">
         <thead>
             <tr>
                 <th></th>
+                <th>Date</th>
                 
-                <th>Status</th>
-                <th>Updated By</th>
-                <th>Date/Time</th>
+                <th>Field Name</th>
+                <th>Old Value</th>
+                <th>New Value</th>
+                  <th>Changed By</th>
             </tr>
         </thead>
         <tbody>
-          <?php foreach($taskstatus as $key => $tsk) { ?>
+          <?php 
+          $tm_status = $this->db->get('status')->result();
+          $tm_sub_status = $this->db->get('sub_status')->result();
+          $tm_task_progress = $this->db->get('task_progress')->result();
+          foreach($tm_status as $v){
+              $statuslist[$v->id]=$v;
+          }
+          foreach($tm_sub_status as $v){
+              $substatuslist[$v->id]=$v;
+          }
+          foreach($tm_task_progress as $v){
+              $done[$v->id]=$v;
+          }
+          $this->db->select('a.crdate as `date`,a.type as field,a.old_data ,a.new_data ,u.fname,u.lname');
+          $this->db->from('taskaudit as a,tm_users as u');
+          $this->db->where('a.createdby  = u.id and a.task_id='.$record_info->id);
+          	$this->db->order_by('a.id','DESC');
+          $changes =$this->db->get()->result();
+         
+          foreach($changes as $key=> $change) { ?>
             <tr class="<?php echo $key==0?'active':'';?>">
                 <td class="track_dot">
                     <span class="track_line"></span>
                 </td>
                
-                <td><?php echo $tsk->status?></td>
-                <td><?php echo $tsk->display_name?></td>
-                <td><?php echo date('d-m-Y H:i:s',strtotime($tsk->updated_on))?></td>
+                <td><?php echo $change->date?></td>
+                <td><?php if($change->field=='status') { echo "Status"; } else if($change->field=='sub_status') { echo "Sub_status"; } else if($change->field=='task_progress') { echo "Done%"; } ?></td>
+                <?php if($change->field=='status') { ?>
+                <td><?php echo $statuslist[$change->old_data]->title;?></td>
+                <td><?php echo $statuslist[$change->new_data]->title; ?></td>
+                <?php }else if($change->field=='sub_status'){ ?>
+                <td><?php echo $substatuslist[$change->old_data]->name;?></td>
+                <td><?php echo $substatuslist[$change->new_data]->name; ?></td>
+                <?php }else if($change->field=='task_progress'){ ?>
+                <td><?php echo $done[$change->old_data]->progress;?></td>
+                <td><?php echo $done[$change->new_data]->progress; ?></td>
+                <?php } ?>
+
+                <td><?php echo $change->fname?> <?php echo $change->lname?></td>
             </tr>
           <?php } ?>  
         </tbody>
     </table>
     </div>
             </div> 
-            <!-- <div class="col-md-12">
-              <div class="form-group">
-                <label>Problems Faced</label>
-                <?php echo $task_info->problems_faced; ?>
-              </div>
             </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label>Learning</label>
-                <?php echo $task_info->learning; ?>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label>Time Duration (hrs): </label>
-                <?php echo $task_info->time_duration; ?>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label>Status: </label>
-                <?php echo $task_info->status; ?>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label>Actual Start Date: </label>
-                <?php echo $task_info->actual_start_date; ?>
-              </div>
-            </div> -->
-            
-            
-          </div>
           <!-- /.row -->
         </div>
         <!-- /.box-body -->
@@ -450,14 +451,13 @@
       
       <!-- /.box -->
       </div>
-
-
-      <div class="box box-default">
+            
+            <div class="box box-default">
         <div class="box-header with-border">
           <h3 class="box-title">Task Releated</h3>
         </div>
        
-           <?php echo $record_info->task_related_to; $task = explode(',',$record_info->task_related_to);
+           <?php  $task = explode(',',$record_info->task_related_to);
           
                 if(is_array($task)){
                   //dd($imageExplode);
@@ -471,7 +471,6 @@
                   </div></div>
                 <?php } }}?>
     </div>
-            </div> 
             <!-- <div class="col-md-12">
               <div class="form-group">
                 <label>Problems Faced</label>
@@ -504,14 +503,7 @@
             </div> -->
             
             
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.box-body -->
-      </div>
-      
-      <!-- /.box -->
-      </div>
+          
     
     </section>
 

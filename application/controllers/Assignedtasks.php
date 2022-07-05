@@ -7,14 +7,17 @@ class Assignedtasks extends CI_Controller
 
 	public $pagename = 'assignedtasks';
 	public $table = 'createtasks';
-	public $complexity_table = 'complexity';
+	public $requirement_table = 'requirements';
+	public $milestones_table='milestones';
+	public $complexity_table='complexity';
 	public $priority_table = 'priority';
 	public $audit_task = 'audit_tasks';
 	public $project_table = 'projects';
-	public $status_table = 'statu';
+	public $status_table = 'status';
 	public $tasks_table = 'tasks';
+	public $tasks_users = 'users';
 	public $attachments_table = 'createtasks_attachments';
-	public $limit = 40;
+	public $limit = 30;
 	public $add_title = 'Task';
 	public $title = 'Assigned Tasks';
 
@@ -95,8 +98,10 @@ class Assignedtasks extends CI_Controller
         
 //print_r($Events);d $this->input->post('save');
 
+
 		if ($this->input->post()) {
 			try {
+			   
                
 				$record_data = array();
 				foreach ($_POST as $key => $value) {
@@ -122,10 +127,18 @@ class Assignedtasks extends CI_Controller
 				$record_data['estimated_ended_on'] = date("Y-m-d", strtotime($record_data['estimated_ended_on']));
 				$record_data['started_on'] = date("Y-m-d", strtotime($record_data['started_on']));
 				$record_data['created_by'] = $this->data['ADMIN_ID'];
+				
 
 				$task_id = $this->common->saveTable($this->table, $record_data);
-		
+				echo $task_id;
+			
+		        	 $us=$this->db->get_where('users', array('id'=>$this->data['ADMIN_ID']))->row();
+			
 				
+		   $admin=$us->fname.$us->lname;
+		      
+				
+			
 				if ($task_id) {
 					// Attachment Upload
 					if (isset($_FILES['attachments'])) {
@@ -207,123 +220,42 @@ class Assignedtasks extends CI_Controller
                             $this->upload->initialize($config);
           
                              $fileData = $this->upload->data();
-                           $message = "<html>
-                                     <head>
-                                     <title>Title of email</title>
-                                     
-                                     </head>
-                                        <style type='text/css'>
-                                                                table {
-                                                      border: 1px solid black;
-                                                      table-layout: fixed;
-                                                      
-                                                    }
-                                                    
-                                                    th,
-                                                    td {
-                                                      border: 1px solid black;
-                                                     
-                                                      overflow: hidden;
-                                                    }
-                                                    
-                                                            </style>
-                                     <body>
-                                  
-                                    <table width='100%' border='1' cellpadding='0' cellspacing='0' bordercolor='#CCCCCC' style= ' border: 1px solid black;
-                                                      table-layout: fixed;'  >
-                                          
-                                              
-                                              <tr>
-                                                <td width='100%' bgcolor='' style= ' border: 1px solid black;
-                                                      table-layout: fixed;'><strong>Name:</strong></td>
-                                                <td width='100%' bgcolor='' style= ' border: 1px solid black;
-                                                      table-layout: fixed;'>".$this->input->post('name')."</td>
-                                              </tr>
-                                              <tr>
-                                                <td width='100%'  bgcolor='#FFFFDD' style= ' border: 1px solid black;
-                                                      table-layout: fixed;'><strong>Complexity:</strong></td>
-                                                <td width='100%'  bgcolor='#FFFFDD'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'>".$this->input->post('complexity')."</td>
-                                              </tr>
-                                              <tr>
-                                                <td width='100%'  bgcolor='#FFFFEC'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'><strong>Priority: </strong></td>
-                                                <td width='100%'  bgcolor='#FFFFEC'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'>".$this->input->post('priority')."</td>
-                                              </tr>
-                                              <tr>
-                                                <td width='100%'  bgcolor='#FFFFDD'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'><strong>Description: </strong></td>
-                                                <td width='100%'  bgcolor='#FFFFDD'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'>".$this->input->post('description')."</td>
-                                              </tr>
-                                              <tr>
-                                                <td width='100%'  bgcolor='#FFFFEC'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'><strong>Precautions: </strong></td>
-                                                <td width='100%'  bgcolor='#FFFFEC'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'>".$this->input->post('precautions')."</td>
-                                              </tr>
-                                              <tr>
-                                                <td width='100%'  bgcolor='#FFFFDD'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'><strong>Step Executed: </strong></td>
-                                                <td width='100%'  bgcolor='#FFFFDD'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'>".$this->input->post('step_executed')."</td>
-                                              </tr>
-                                              <tr>
-                                                <td width='100%'  bgcolor='#FFFFEC'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'><strong>Assigned Date: </strong></td>
-                                                <td width='100%'  bgcolor='#FFFFEC'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'>".$this->input->post('assigned_date')."</td>
-                                              </tr>
-                                              <tr>
-                                                <td width='100%'  bgcolor='#FFFFDD'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'><strong>Started On: </strong></td>
-                                                <td width='100%'  bgcolor='#FFFFDD'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'>".$this->input->post('started_on')."</td>
-                                              </tr>
-                                              <tr>
-                                                <td width='100%'  bgcolor='#FFFFEC'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'><strong>Sstimated Ended On </strong></td>
-                                                <td width='100%'  bgcolor='#FFFFEC'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'>".$this->input->post('estimated_ended_on')."</td>
-                                              </tr>
-                                              <tr>
-                                                <td width='100%'  bgcolor='#FFFFDD'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'><strong>Estimated Time Duration: </strong></td>
-                                                <td bgcolor='#FFFFDD'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'>".$this->input->post('estimated_time_duration')."</td>
-                                              </tr>
-                                              <tr>
-                                                <td width='100%' bgcolor='#FFFFEC'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'><strong>Task Related To: </strong></td>
-                                                <td width='100%' bgcolor='#FFFFEC'style= ' border: 1px solid black;
-                                                      table-layout: fixed;'>".$Events."</td>
-                                              </tr>
-                                        </table>
-                                    </body>
-                                    </html>";
-                                    	if(isset($_POST['submit'])){
+                             if(isset($_POST['submit'])){
+                              $msg = array(
+	         'task_name'=>$this->input->post('name'),
+             'complexity'=>$this->input->post('complexity'),
+			'priority'=> $this->input->post('priority'),
+			'description'=>$this->input->post('description'),
+			'precautions'=>$this->input->post('precautions'),
+			'step_executed'=>$this->input->post('step_executed'),
+'assigned_date'=>$this->input->post('assigned_date'),
+'started_on'=>$this->input->post('started_on'),
+'estimated_ended_on'=>$this->input->post('estimated_ended_on'),
+'estimated_time_duration'=>$this->input->post('estimated_time_duration'),
+'events'=>$Events,
+'task_id'=>$task_id,
+'asgto' =>$this->input->post('assigned_to')
+
+			
+		
+        );
+                   
+                    $message = $message = $this->load->view('email',$msg,TRUE);
+                                    	
                                 $subject.="Task Id";
                                 $config = array(  'mailtype'  => 'html', 'charset'   => 'iso-8859-1' );
                                 $this->load->library('email'); 
                                 $this->email->initialize( $config);
-                                $this->email->from('info@dqci.in', 'admin');
+                                $this->email->from('info@dqci.in', $admin);
                                 $this->email->to($em2);
-                                	for ($i = 0; $i < count($rz); $i++) {
-					 $this->email->cc($rz[$i]);
-				
-				}
-                               
-                            $this->email->cc('navaneethas26@gmail.com');
+                                $this->email->cc($email_cc);
+                               //$this->email->cc('vasu.svrao@gmail.com');
                                 //$this->email->subject($subject. taskId($Events));
-                               $this->email->subject($subject.":" ."TASK00".$task_id); 
+                               $this->email->subject($subject.":" ."TASK0".$task_id); 
                                 $this->email->message($message);
 
-
-
-               
                        $this->email->send();
-                                    	}
+                             }   
                       /* echo $this->email->print_debugger();
                        exit();*/
                          //	exit;   
@@ -333,7 +265,7 @@ class Assignedtasks extends CI_Controller
                     }
                 
 				// mail
-				$this->session->set_flashdata('message', 'New ' . $this->add_title . ' Added <strong>Successfully</strong>.');
+				$this->session->set_flashdata('message', 'New ' . ''. "TASK0".$task_id .'  Added <strong>Successfully</strong>.');
 				redirect(base_url($this->pagename));
 			} catch (Exception $e) {
 				print_r($e->getMessage());
@@ -369,11 +301,12 @@ class Assignedtasks extends CI_Controller
 
 	public function edit($ctask_md5_id = '', $ctask_attach_md5_id = '')
 	{
+	    
 		if ($ctask_attach_md5_id) {
 			// Delete My Tasks
 			$taskdetails = $this->common->getSelectedRecordDetails('file_name', $this->attachments_table, array('md5(id)' => $ctask_attach_md5_id));
 			$unlink_file = $taskdetails->file_name;
-			$delete = $this->common->deleteTable($this->attachments_table, array('md5(id)' => $ctask_attach_md5_id)); 
+			$delete = $this->common->deleteTable($this->attachments_table, array('md5(id)' => $ctask_attach_md5_id));
 			if ($delete) {
 				unlink('./public/attachments/' . $unlink_file);
 			}
@@ -401,14 +334,15 @@ class Assignedtasks extends CI_Controller
 				else if (($key != 'save') && ($key != 'edit_id') && ($key != 'createtask_id'))
 					$record_data[$key] = $value;
 			}
-			
+			$Events =  implode(', ', (array)$this->input->post('task_related_to'));
+        
 			$record_data['assigned_date'] = date("Y-m-d", strtotime($record_data['assigned_date']));
 			$record_data['estimated_ended_on'] = date("Y-m-d", strtotime($record_data['estimated_ended_on']));
 			$record_data['started_on'] = date("Y-m-d", strtotime($record_data['started_on']));
 			// Attachment Upload
 			if ($_FILES['attachments']['name'][0]) {
 				$path = './public/attachments/';
-				$title = date('YmdHis');
+				$title ='';
 				$files = $_FILES['attachments'];
 				$file_return = $this->task->upload_files($path, $title, $files);
 
@@ -426,7 +360,7 @@ class Assignedtasks extends CI_Controller
 					}
 				}
 			}
-
+ 
 			for ($i = 0; $i < count($assigned_to); $i++) {
 				$task_count = $this->common->get_table_count($this->tasks_table, array('user_id' => $assigned_to[$i], 'md5(createtask_id)' => $ctask_md5_id));
 				if ($task_count == 0) {
@@ -443,18 +377,78 @@ class Assignedtasks extends CI_Controller
 				}
 			}
 
-
-
+$asg = $this->input->post('assigned_to');
+                
+               // echo "<pre/>"; print_r($asg);die;
+                $eml = [];
+                for ($i = 0; $i < count($asg); $i++) {
+					$get_email = "SELECT * FROM tm_users WHERE id = '$asg[$i]' ";
+					$query = $this->db->query($get_email);
+					$res = $query->row();
+					 $toemail = $res->email;
+					
+					array_push($eml, $toemail);
+				}
+				
+				$em2 = implode(', ', $eml);
+ $us=$this->db->get_where('users', array('id'=>$this->data['ADMIN_ID']))->row();
+			
+				
+		   $admin=$us->fname.$us->lname;
+		    $res1=$this->db->get_where('createtasks', array('md5(id)' => $edit_id))->row();
+		    
 			$res = $this->common->updateTable($this->table, array('md5(id)' => $edit_id), $record_data);
 			if ($res) {
+			    if(!empty($email_cc) || !empty($assigned_to) ){
+			     $msg = array(
+	         'task_name'=>$this->input->post('name'),
+             'complexity'=>$this->input->post('complexity'),
+			'priority'=> $this->input->post('priority'),
+			'description'=>$this->input->post('description'),
+			'precautions'=>$this->input->post('precautions'),
+			'step_executed'=>$this->input->post('step_executed'),
+'assigned_date'=>$this->input->post('assigned_date'),
+'started_on'=>$this->input->post('started_on'),
+'estimated_ended_on'=>$this->input->post('estimated_ended_on'),
+'estimated_time_duration'=>$this->input->post('estimated_time_duration'),
+'events'=>$Events,
+'task_id'=>$res1->id,
+'asgto' =>$this->input->post('assigned_to'),
+
+
+			
+		
+        );
+                           $message = $message = $this->load->view('email',$msg,TRUE);
+                                    	
+                                $subject.="Task Id";
+                                $config = array(  'mailtype'  => 'html', 'charset'   => 'iso-8859-1' );
+                                $this->load->library('email'); 
+                                $this->email->initialize( $config);
+                                $this->email->from('info@dqci.in', $admin);
+                                $this->email->to($em2);
+                                $this->email->cc($email_cc);
+                               //$this->email->cc('vasu.svrao@gmail.com');
+                                //$this->email->subject($subject. taskId($Events));
+                               $this->email->subject($subject.":" ."TASK00".$res1->id); 
+                                $this->email->message($message);
+                               $this->email->send();
+                              echo $this->email->print_debugger();
+                              
+          
 				for ($i = 0; $i < count($assigned_to); $i++) {
 				//	$this->notificationmail->sendUpdateMailWithOutEvent($assigned_to[$i], $this->data['record_info']->id);
 				}
 			}
 
 
-			$this->session->set_flashdata('message', $this->add_title . ' Updated <strong>Successfully</strong>.');
+			$this->session->set_flashdata('message',   "TASK00".$res1->id. ' Updated <strong>Successfully</strong>.');
 			redirect(site_url($this->pagename));
+		}else {
+		    	//$this->session->set_flashdata('message',   "Pls Atleast Assignto another person");
+		    	redirect(site_url($this->pagename));
+		    
+		}
 		}
 
 		$this->data['attachments'] = $this->common->getAllRecords('id,file_name', $this->attachments_table, array('user_id' => $this->data['ADMIN_ID'], 'md5(createtask_id)' => $ctask_md5_id), array('id', 'DESC'), array($this->limit, 0));
@@ -468,6 +462,175 @@ class Assignedtasks extends CI_Controller
 		$this->data['project'] = $this->common->getAllRecords('id,name', $this->project_table, '', array('sort_order', 'DESC'), array($this->limit, 0));
 		$this->data['allTasks'] = $this->task->allAssignedTasks($this->data['ADMIN_ID']);
 		$this->load->view($this->pagename . '/edit', $this->data);
+	}
+	
+	
+	
+		public function forward($ctask_md5_id = '', $ctask_attach_md5_id = '')
+	{
+	    
+		if ($ctask_attach_md5_id) {
+			// Delete My Tasks
+			$taskdetails = $this->common->getSelectedRecordDetails('file_name', $this->attachments_table, array('md5(id)' => $ctask_attach_md5_id));
+			$unlink_file = $taskdetails->file_name;
+			$delete = $this->common->deleteTable($this->attachments_table, array('md5(id)' => $ctask_attach_md5_id));
+			if ($delete) {
+				unlink('./public/attachments/' . $unlink_file);
+			}
+			$this->session->set_flashdata('message', 'Assigned Attachment Deleted Successfully.');
+			redirect(site_url('assignedtasks/edit/' . $ctask_md5_id));
+		}
+
+		$this->data['record_info'] = $this->common->getSelectedRecordDetails('*', $this->table, array('md5(id)' => $this->uri->segment(3)));
+
+
+
+		$record_info_id = $this->data['record_info']->id;
+
+		if ($this->input->post()) {
+			foreach ($_POST as $key => $value) {
+				$$key = $value;
+				if ($key == 'password')
+					$record_data[$key] = base64_encode($value);
+				else if ($key == 'assigned_to')
+					$record_data[$key] = implode(',', $value);
+				else if ($key == 'task_related_to')
+					$record_data[$key] = implode(',', $value);
+				else if ($key == 'update')
+					$record_data['flag'] = 0;
+				else if (($key != 'save') && ($key != 'edit_id') && ($key != 'createtask_id'))
+					$record_data[$key] = $value;
+			}
+			$Events =  implode(', ', (array)$this->input->post('task_related_to'));
+        
+			$record_data['assigned_date'] = date("Y-m-d", strtotime($record_data['assigned_date']));
+			$record_data['estimated_ended_on'] = date("Y-m-d", strtotime($record_data['estimated_ended_on']));
+			$record_data['started_on'] = date("Y-m-d", strtotime($record_data['started_on']));
+			// Attachment Upload
+			if ($_FILES['attachments']['name'][0]) {
+				$path = './public/attachments/';
+				$title ='';
+				$files = $_FILES['attachments'];
+				$file_return = $this->task->upload_files($path, $title, $files);
+
+				// Insert tm_createtasks_attachments
+				if ($file_return) {
+					foreach ($file_return as $fileloop) {
+						if (isset($fileloop['file_name'])) {
+							/** Below commented code Original one below one is new and Update *not recommended */
+							//$fname=$fileloop['file_name'];
+							$fname = $fileloop['raw_name'] . $fileloop['client_name'];
+							$fname = $fileloop['file_name'];
+							$record_data1 = array('user_id' => $this->data['ADMIN_ID'], 'createtask_id' => $this->data['record_info']->id, 'file_name' => $fname);
+							$this->common->saveTable($this->attachments_table, $record_data1);
+						}
+					}
+				}
+			}
+ 
+		/*	for ($i = 0; $i < count($assigned_to); $i++) {
+				$task_count = $this->common->get_table_count($this->tasks_table, array('user_id' => $assigned_to[$i], 'md5(createtask_id)' => $ctask_md5_id));
+				if ($task_count == 0) {
+					$task_data = array('createtask_id' => $this->data['record_info']->id, 'user_id' => $assigned_to[$i]);
+					$this->common->saveTable($this->tasks_table, $task_data);
+					try {
+						//code...
+						//$this->notificationmail->sendMailWithOutEvent($assigned_to[$i], $this->data['record_info']->id);
+					} catch (\Exception $e) {
+						//throw $th;
+						echo $e->getMessage();
+						die;
+					}
+				}
+			}*/
+
+$asg = $this->input->post('assigned_to');
+                
+               // echo "<pre/>"; print_r($asg);die;
+                $eml = [];
+                for ($i = 0; $i < count($asg); $i++) {
+					$get_email = "SELECT * FROM tm_users WHERE id = '$asg[$i]' ";
+					$query = $this->db->query($get_email);
+					$res = $query->row();
+					 $toemail = $res->email;
+					
+					array_push($eml, $toemail);
+				}
+				
+				$em2 = implode(', ', $eml);
+ $us=$this->db->get_where('users', array('id'=>$this->data['ADMIN_ID']))->row();
+			
+				
+		   $admin=$us->fname.$us->lname;
+		    $res1=$this->db->get_where('createtasks', array('md5(id)' => $edit_id))->row();
+		    
+		/*	$res = $this->common->updateTable($this->table, array('md5(id)' => $edit_id), $record_data);
+			if ($res) {*/
+			      if (!empty($forward_cc)) {
+			     $msg = array(
+	         'task_name'=>$this->input->post('name'),
+             'complexity'=>$this->input->post('complexity'),
+			'priority'=> $this->input->post('priority'),
+			'description'=>$this->input->post('description'),
+			'precautions'=>$this->input->post('precautions'),
+			'step_executed'=>$this->input->post('step_executed'),
+'assigned_date'=>$this->input->post('assigned_date'),
+'started_on'=>$this->input->post('started_on'),
+'estimated_ended_on'=>$this->input->post('estimated_ended_on'),
+'estimated_time_duration'=>$this->input->post('estimated_time_duration'),
+'events'=>$Events,
+'msg_replay'=>$this->input->post('msg_replay'),
+'task_id'=>$res1->id,
+'asgto' =>$this->input->post('assigned_to'),
+
+
+			
+		
+        );
+                           $message = $message = $this->load->view('forwardemail',$msg,TRUE);
+                                    	
+                                $subject.=" Forward Task Id";
+                                $config = array(  'mailtype'  => 'html', 'charset'   => 'iso-8859-1' );
+                                $this->load->library('email'); 
+                                $this->email->initialize( $config);
+                                $this->email->from('info@dqci.in', $admin);
+                                //$this->email->to($em2);
+                                $this->email->cc($forward_cc);
+                               //$this->email->cc('vasu.svrao@gmail.com');
+                                //$this->email->subject($subject. taskId($Events));
+                               $this->email->subject($subject.":" ."TASK00".$res1->id); 
+                                $this->email->message($message);
+                               $this->email->send();
+                              echo $this->email->print_debugger();
+                              
+          
+				for ($i = 0; $i < count($assigned_to); $i++) {
+				//	$this->notificationmail->sendUpdateMailWithOutEvent($assigned_to[$i], $this->data['record_info']->id);
+				}
+			
+
+
+			$this->session->set_flashdata('message',   "TASK00".$res1->id. ' Forward <strong>Successfully</strong>.');
+			redirect(site_url($this->pagename));
+			      }
+			      else {
+			        $this->session->set_flashdata('message',   'Please enter at least one Forward Email');  
+			        redirect(site_url($this->pagename));
+			          
+			      }
+		}
+
+		$this->data['attachments'] = $this->common->getAllRecords('id,file_name', $this->attachments_table, array('user_id' => $this->data['ADMIN_ID'], 'md5(createtask_id)' => $ctask_md5_id), array('id', 'DESC'), array($this->limit, 0));
+
+
+
+		$this->data['complexity'] = $this->common->getAllRecords('id,title', $this->complexity_table, '', array('order', 'ASC'), array($this->limit, 0));
+		$this->data['priority'] = $this->common->getAllRecords('id,title', $this->priority_table, '', array('order', 'ASC'), array($this->limit, 0));
+		$this->data['assigned_users'] = $this->task->allAssignedUsers($this->data['ADMIN_ROLE_ID'], $this->data['ADMIN_ID']);
+		$this->data['users_email'] = $this->task->getUserEmails();
+		$this->data['project'] = $this->common->getAllRecords('id,name', $this->project_table, '', array('sort_order', 'DESC'), array($this->limit, 0));
+		$this->data['allTasks'] = $this->task->allAssignedTasks($this->data['ADMIN_ID']);
+		$this->load->view($this->pagename . '/forward', $this->data);
 	}
 
 	function show($ctask_md5_id)
@@ -599,17 +762,27 @@ echo "<option value=''> Select Requirement</option>";
 }
 public function getproject(){
 		$id=$this->uri->segment(3);
+		$admin_id=$this->data['ADMIN_ID'];
 	$res2	=$this->db->get_where('projects',  array('id'=>$id))->row();
 	$res=explode (',', $res2->assigned_to);
-print_r($res);
+
 
 	
 	
      foreach($res as $re4)  {  $re5=$this->db->get_where('users', array('id'=>$re4))->row();
-      echo "<option value='$re5->id'> $re5->fname</option>";
+      if($re5->etype=='2'){
+     	$z="(External)";
+     }else {
+     	$z="";
+     }
+      echo "<option value='$re5->id'> $re5->fname$re5->lname $z </option>";
 	}
 	
 }
+	public	function login_details(){
+	
+		$this->load->view('assignedtasks/logs');
+	}
 
 public function search()
 	{
@@ -632,4 +805,47 @@ public function search()
 	
 		redirect('assignedtasks/show/'.@$this->uri->segment(4));
 		}
+
+
+		public function emppro($require_id = '')
+	{
+	  
+
+
+	
+	
+
+		
+		if ($this->data['ADMIN_ROLE_ID'] == 4) {
+			$ADMIN_ROLE_ID = 2;
+		} else {
+			$ADMIN_ROLE_ID = $this->data['ADMIN_ROLE_ID'];
+		}
+
+
+		if ($require_id != '') {
+			$this->data['project'] = $this->common->getAllRecords('id,name', $this->project_table, array('md5(id)' => $require_id), array('sort_order', 'DESC'), array($this->limit, 0));
+		} else {
+			$this->data['project'] = $this->common->getAllRecords('id,name', $this->project_table, '', array('sort_order', 'DESC'), array($this->limit, 0));
+		}
+
+		$this->data['assigned_users'] = $this->task->allAssignedUsers($ADMIN_ROLE_ID, $this->data['ADMIN_ID']);
+	//	
+
+		
+	
+	 if(isset($_POST['submit'])){
+	 
+ 	 $emp_id= $this->input->post('emp_id');
+     $pr_id=$this->input->post('pr_id');
+ 
+		if (isset($_GET['req_id']) && $_GET['req_id'] != '' )
+			$this->data['records'] = $this->task->employewise($this->data['ADMIN_ID'], $_GET['req_id'], $emp_id, $pr_id);
+		else
+			$this->data['records'] = $this->task->employewise($this->data['ADMIN_ID'],'', $emp_id, $pr_id);
+	}
+
+		$this->load->view($this->pagename . '/newproject', $this->data);
+	}
+
 }

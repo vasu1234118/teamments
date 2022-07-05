@@ -6,11 +6,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <?php if($this->uri->segment(2)=="alltasks" && $this->uri->segment(1)=="assignedtasks" ){ ?>
-      <h1>ALL Tasks</h1>
+      <h1>All Tasks</h1>
       <?php }  else if($this->uri->segment(2)=="mysavedtasks" && $this->uri->segment(1)=="assignedtasks" ){ ?>
         <h1>My Saved Tasks</h1>
     <?php } else if($this->uri->segment(1)=="assignedtasks"){ ?>
-      <h1>Assigned Tasks</h1>
+      <h1>Assigned To Others</h1>
     <?php } ?>
     </section>
 
@@ -44,7 +44,7 @@ $date=date('y-m-d');
     $res=$this->db->insert('mergetask',$updt);
     if($res)
     {
-         echo '<script type="text/javascript">alert("  Successfully  Add Merge Task ")</script>';
+         echo '<script type="text/javascript">alert(" Successfully Merged Task ")</script>';
       $this->session->set_flashdata('msg',"Successfully Changed Passwrd");
 
       //redirect('dashboard');
@@ -70,20 +70,21 @@ $date=date('y-m-d');
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <table id="referral_table" class="display responsive nowrap" cellspacing="0" width="100%">
+              <table id="referral_table1" class="display responsive nowrap" cellspacing="0" width="100%">
                   <thead>
                         <tr>
                             <th style="width: 1%;">S.no</th>
                             <th style="width: 1%;">TASK-ID</th>
-                            <th style="width: 1%;">REQ-ID</th>
-                            <th style="width: 21%;">Project </th>
-                            <th style="width: 21%;">Milestone </th>
+                            <th style="width: 9%;">To Date</th>
+                            <th style="width: 12%;">Project </th>
+                            <th style="width: 12%;">Milestone </th>
                             <th style="width: 21%;">Task Name</th>
                             <th style="width: 10%;">Assigned to (with status)</th>
                             <th style="width: 10%;">Est Time (Hrs)</th>
                             <th style="width: 9%;">Priority</th>
                             <th style="width: 9%;">Complexity</th>
-                            <th style="width: 9%;">To Start Date</th>
+                            <th style="width: 1%;">REQ-ID</th>
+                            
                             <th style="width: 9%;">Expected End Date</th>
                              <th style="width: 9%;">Actual Start Date</th>
                               <th style="width: 9%;">Actual End Date</th>
@@ -92,11 +93,12 @@ $date=date('y-m-d');
                     </thead>
                     <tbody>
                     
-                      <?php $index=1; foreach($records as $row) { ?>
+                      <?php $index=1; foreach($records as $row){ ?>
                         <tr>
                           <td><?php echo $index; ?></td>
                           <td><?php echo taskId($row->id); ?></td>
-                          <td>PJ4REQ000<?php echo ($row->project_id); ?></td>
+                          <td><?php echo date('d-m-Y',strtotime($row->started_on)); ?></td>
+                          
                           <td><?php echo $row->project_name;  ?></td>
                           <td><?php echo $row->milestone_name;  ?></td>
                           <td><?php echo $row->name; if($row->flag==2) echo '&nbsp;[ <i class="fa fa-save" style="font-size:20px;color:red"></i> ]'; ?></td>
@@ -105,18 +107,19 @@ $date=date('y-m-d');
                           <td><?php echo $row->estimated_time_duration; ?></td>
                           <td><?php echo $row->priority_name; ?></td>
                           <td><?php echo $row->complexity_name; ?></td>
-                          <td><?php echo date('d-m-Y',strtotime($row->started_on)); ?></td>
+                          <td>PJ4REQ000<?php echo ($row->project_id); ?></td>
                           <td><?php echo date('d-m-Y',strtotime($row->estimated_ended_on)); ?></td>
                           <td><?php   $z=explode(',', $row->assigned_to);  foreach($z as $sk ){ $k=$this->db->get_where('tasks', array('user_id'=>$sk, 'createtask_id'=>$row->id,'actual_start_date!=' =>'0000-00-00'))->row(); if($k){ $u=$this->db->get_where('users', array('id'=>$sk))->row();$es= '('.$u->fname.')' .date('d-m-Y',strtotime($k->actual_start_date)).',' ; echo rtrim($es,','); }   }  ?></td>
                           <td><?php   $e=explode(',', $row->assigned_to);  foreach($e as $e1 ){ $e3=$this->db->get_where('tasks', array('user_id'=>$e1, 'createtask_id'=>$row->id,'actual_end_date!=' =>'0000-00-00'))->row(); if($e3){ $ue=$this->db->get_where('users', array('id'=>$e1))->row();$es3= '('.$ue->fname.')'  .date('d-m-Y',strtotime($e3->actual_end_date)).',' ; echo rtrim($es3,','); }   }  ?></td>
                           <td>
-                            <a href="<?php echo site_url($pagename.'/copy/'.md5($row->id)); ?>"   title="Copy" onclick="return confirm('Are you sure you want to copy this Task?');"><i class="fa fa-copy"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                            <a href="<?php echo site_url($pagename.'/show/'.md5($row->id)); ?>"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="<?php echo site_url($pagename.'/copy/'.md5($row->id)); ?>" data-toggle="tooltip" data-placement="top"  data-original-title="Copy"   title="Copy" onclick="return confirm('Are you sure you want to copy this Task?');"><i class="fa fa-copy"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="<?php echo site_url($pagename.'/show/'.md5($row->id)); ?>" data-toggle="tooltip" data-placement="top" title="View" data-original-title="View"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 
                             <?php if($row->created_by==$ADMIN_ID||$ADMIN_ID=='20'){?>
-                            <a href="<?php echo site_url($pagename.'/edit/'.md5($row->id)); ?>"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                            <a href="<?php echo site_url($pagename.'/delete/'.md5($row->id)); ?>" onclick="return confirm('Are you sure you want to delete this Task?');"><i class="fa fa-trash-o"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                             <a data-toggle="modal" data-target=".a<?php echo $row->id; ?>exampleModal"  href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i font-size="18px"; class="fa fa-plus-circle"></i></a>
+                            <a href="<?php echo site_url($pagename.'/edit/'.md5($row->id)); ?>" data-toggle="tooltip" data-placement="top" title="Edit" data-original-title="Edit"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                             <a href="<?php echo site_url($pagename.'/forward/'.md5($row->id)); ?>" data-toggle="tooltip" data-placement="top" title="Forward" data-original-title="Forward"><i class="fa fa-forward"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="<?php echo site_url($pagename.'/delete/'.md5($row->id)); ?>" onclick="return confirm('Are you sure you want to delete this Task?');"data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                             <a data-toggle="modal" data-target=".a<?php echo $row->id; ?>exampleModal"  href="" data-toggle="tooltip" data-placement="top" title="Merge" data-original-title="Edit"><i font-size="18px"; class="fa fa-plus-circle"></i></a>
 
    
 
